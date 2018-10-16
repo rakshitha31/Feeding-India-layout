@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context=".fragments.AddOrRemoveAdmin"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_user_email"
+        android:textSize="18sp"
+        android:textColor="@color/sienna"
+        android:textAlignment="viewStart"
+        android:layout_margin="@dimen/margin_five_dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
+        android:id="@+id/emailEditText"
+        android:layout_marginRight="@dimen/margin_five_dp"
+        android:layout_marginLeft="@dimen/margin_five_dp"
+        android:padding="@dimen/margin_five_dp"
+        android:background="@drawable/edit_text_border"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?attr/borderlessButtonStyle"
+        android:text="@string/make_admin"
+        android:background="@drawable/button_background"
+        android:textColor="@color/white"
+        android:id="@+id/makeAdminButton"
+        android:layout_marginRight="@dimen/margin_five_dp"
+        android:layout_marginLeft="@dimen/margin_five_dp"
+        android:layout_marginTop="@dimen/margin_ten_dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?attr/borderlessButtonStyle"
+        android:text="@string/remove_admin"
+        android:background="@drawable/button_background"
+        android:textColor="@color/white"
+        android:id="@+id/removeAdminButton"
+        android:layout_marginRight="@dimen/margin_five_dp"
+        android:layout_marginLeft="@dimen/margin_five_dp"
+        android:layout_marginTop="@dimen/margin_ten_dp" />
+
+</LinearLayout>

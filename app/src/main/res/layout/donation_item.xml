@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_five_dp"
+    app:cardElevation="@dimen/margin_five_dp"
+    app:cardCornerRadius="@dimen/margin_five_dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_ten_dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/stratos"
+            android:layout_margin="@dimen/root_layout_margin"
+            android:text="@string/food_description"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/food_description"
+            android:textSize="16sp"
+            android:textColor="@color/sienna"
+            android:layout_margin="@dimen/root_layout_margin"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/stratos"
+            android:layout_margin="@dimen/root_layout_margin"
+            android:text="@string/food_type"/>
+
+        <TextView
+            android:id="@+id/food_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/sienna"
+            android:layout_margin="@dimen/root_layout_margin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/root_layout_margin"
+            android:text="@string/status_of_delivery"
+            android:textSize="18sp"
+            android:textColor="@color/stratos"/>
+
+        <TextView
+            android:id="@+id/delivery_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/root_layout_margin"
+            android:textSize="16sp"
+            android:textColor="@color/sienna"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/stratos"
+            android:layout_margin="@dimen/root_layout_margin"
+            android:text="@string/deliverer_name" />
+
+        <TextView
+            android:id="@+id/deliverer_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/root_layout_margin"
+            android:textSize="16sp"
+            android:textColor="@color/sienna"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/stratos"
+            android:layout_margin="@dimen/root_layout_margin"
+            android:text="@string/deliverer_contact_number" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/deliverer_contact_number"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/root_layout_margin"
+            android:textSize="16sp"
+            android:textColor="@color/sienna"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/delivered_on"
+            android:textSize="18sp"
+            android:textColor="@color/stratos"
+            android:layout_margin="@dimen/root_layout_margin" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/donation_image"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_margin="@dimen/margin_five_dp"
+                android:contentDescription="@string/donation_image"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/delivery_image"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="150dp"
+                android:layout_margin="@dimen/margin_five_dp"
+                android:contentDescription="@string/delivery_image"
+                android:scaleType="fitCenter" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
+

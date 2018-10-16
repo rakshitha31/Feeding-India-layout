@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.DonorSignUpActivity"
+    android:layout_margin="@dimen/root_layout_margin"
+    android:scrollbarStyle="outsideOverlay"
+    android:fillViewport="true">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/user_form"
+                android:textSize="30sp"
+                android:textColor="@color/stratos"
+                android:textAlignment="center"
+                android:layout_margin="@dimen/margin_five_dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textSize="18sp"
+                android:textColor="@color/sienna"
+                android:textAlignment="viewStart"
+                android:layout_margin="@dimen/margin_five_dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="@string/enter_name"
+                android:id="@+id/nameEditText"
+                android:padding="@dimen/margin_five_dp"
+                android:layout_marginLeft="@dimen/margin_five_dp"
+                android:layout_marginRight="@dimen/margin_five_dp"
+                android:background="@drawable/edit_text_border"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/margin_ten_dp"
+                android:layout_marginBottom="@dimen/margin_five_dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="@string/dob"
+                    android:textSize="18sp"
+                    android:textColor="@color/sienna"
+                    android:layout_margin="@dimen/margin_five_dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:textSize="18sp"
+                    android:textColor="@color/solidBlue"
+                    android:gravity="center"
+                    android:id="@+id/dobTextView"
+                    android:background="@drawable/edit_text_border" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_calendar"
+                    android:contentDescription="@string/dob"
+                    android:onClick="onClickDatePickerButton"
+                    android:layout_margin="@dimen/margin_five_dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textSize="18sp"
+                android:textColor="@color/sienna"
+                android:textAlignment="viewStart"
+                android:layout_margin="@dimen/margin_five_dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/enter_email"
+                android:id="@+id/emailEditText"
+                android:padding="5dp"
+                android:layout_marginLeft="@dimen/margin_five_dp"
+                android:layout_marginRight="@dimen/margin_five_dp"
+                android:background="@drawable/edit_text_border"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/required_password"
+                android:textSize="18sp"
+                android:textColor="@color/sienna"
+                android:textAlignment="viewStart"
+                android:layout_margin="@dimen/margin_five_dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="@string/create_password"
+                android:id="@+id/passwordEditText"
+                android:padding="@dimen/margin_five_dp"
+                android:layout_marginLeft="@dimen/margin_five_dp"
+                android:layout_marginRight="@dimen/margin_five_dp"
+                android:background="@drawable/edit_text_border"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/select_city"
+                android:textSize="18sp"
+                android:textColor="@color/sienna"
+                android:textAlignment="viewStart"
+                android:layout_margin="@dimen/margin_five_dp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/forty_dp"
+                android:layout_marginLeft="@dimen/margin_five_dp"
+                android:layout_marginRight="@dimen/margin_five_dp"
+                android:background="@drawable/edit_text_border"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mobile_number"
+                android:textSize="18sp"
+                android:textColor="@color/sienna"
+                android:textAlignment="viewStart"
+                android:layout_margin="@dimen/margin_five_dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:hint="@string/enter_number"
+                android:maxLength="10"
+                android:id="@+id/mobileNumberEditText"
+                android:padding="5dp"
+                android:layout_marginLeft="@dimen/margin_five_dp"
+                android:layout_marginRight="@dimen/margin_five_dp"
+                android:background="@drawable/edit_text_border"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?android:attr/borderlessButtonStyle"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="@dimen/margin_five_dp"
+                android:layout_marginLeft="@dimen/margin_five_dp"
+                android:background="@drawable/button_background"
+                android:onClick="onClickSubmitButton" />
+
+    </LinearLayout>
+
+</ScrollView>

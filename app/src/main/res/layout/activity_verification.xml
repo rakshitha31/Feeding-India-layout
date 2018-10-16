@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.VerificationActivity"
+    android:layout_margin="@dimen/root_layout_margin"
+    android:scrollbarStyle="outsideOverlay"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:scrollbars="vertical"
+        android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/timer_text"
+                android:textSize="30sp"
+                android:textColor="@color/sienna"
+                android:textAlignment="center"
+                android:layout_margin="@dimen/margin_five_dp"
+                android:id="@+id/timerTextView"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/verification_code"
+                android:textSize="18sp"
+                android:textColor="@color/sienna"
+                android:textAlignment="viewStart"
+                android:layout_margin="@dimen/margin_five_dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="@string/enter_code"
+                android:maxLength="6"
+                android:id="@+id/verificationCodeEditText"
+                android:padding="@dimen/margin_five_dp"
+                android:layout_marginLeft="@dimen/margin_five_dp"
+                android:layout_marginRight="@dimen/margin_five_dp"
+                android:background="@drawable/edit_text_border"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?android:attr/borderlessButtonStyle"
+                android:text="@string/verify"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/margin_ten_dp"
+                android:layout_marginRight="@dimen/margin_five_dp"
+                android:layout_marginLeft="@dimen/margin_five_dp"
+                android:background="@drawable/button_background"
+                android:onClick="onClickVerifyButton" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?android:attr/borderlessButtonStyle"
+                android:text="@string/resend"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/margin_ten_dp"
+                android:layout_marginRight="@dimen/margin_five_dp"
+                android:layout_marginLeft="@dimen/margin_five_dp"
+                android:background="@drawable/button_background"
+                android:onClick="onClickResendCode" />
+
+
+    </LinearLayout>
+
+</ScrollView>

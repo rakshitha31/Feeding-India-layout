@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/root_layout_margin"
+        tools:context=".fragments.FormFragment">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/become_hungerhero"
+            android:textSize="25sp"
+            android:textColor="@color/stratos"
+            android:textAlignment="center"
+            android:layout_margin="@dimen/margin_five_dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/educational_background"
+            android:textSize="18sp"
+            android:textColor="@color/sienna"
+            android:textAlignment="viewStart"
+            android:layout_margin="5dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/enter_edu_background"
+            android:id="@+id/educationalBackgroundEditText"
+            android:padding="@dimen/margin_five_dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:background="@drawable/edit_text_border"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currently_part_of"
+            android:textSize="18sp"
+            android:textColor="@color/sienna"
+            android:textAlignment="viewStart"
+            android:layout_margin="@dimen/margin_five_dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/your_answer"
+            android:id="@+id/currentlyPartOfEditText"
+            android:padding="@dimen/margin_five_dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:background="@drawable/edit_text_border"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/state"
+            android:textSize="18sp"
+            android:textColor="@color/sienna"
+            android:textAlignment="viewStart"
+            android:layout_margin="@dimen/margin_five_dp" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/thirty_five_dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:id="@+id/stateSpinner"
+            android:background="@drawable/edit_text_border"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/locality"
+            android:textSize="18sp"
+            android:textColor="@color/sienna"
+            android:textAlignment="viewStart"
+            android:layout_margin="@dimen/margin_five_dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/enter_locality"
+            android:id="@+id/localityEditText"
+            android:padding="@dimen/margin_five_dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:background="@drawable/edit_text_border"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pin_code"
+            android:textSize="18sp"
+            android:textColor="@color/sienna"
+            android:textAlignment="viewStart"
+            android:layout_margin="@dimen/margin_five_dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/enter_pin_code"
+            android:id="@+id/pinCodeEditText"
+            android:maxLength="6"
+            android:padding="@dimen/margin_five_dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:background="@drawable/edit_text_border"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reason_for_joining"
+            android:textSize="18sp"
+            android:textColor="@color/sienna"
+            android:textAlignment="viewStart"
+            android:layout_margin="@dimen/margin_five_dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:hint="@string/your_answer"
+            android:id="@+id/reasonForJoiningEditText"
+            android:padding="@dimen/margin_five_dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:background="@drawable/edit_text_border"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/responsibility"
+            android:textSize="18sp"
+            android:textColor="@color/sienna"
+            android:textAlignment="viewStart"
+            android:layout_margin="@dimen/margin_five_dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/hunger_hero_description"
+                android:textSize="18sp"
+                android:textColor="@color/solidBlue"
+                android:id="@+id/radioButton4"
+                android:checked="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:text="@string/read_more"
+                android:id="@+id/textView1"
+                android:textSize="18sp"
+                android:layout_marginStart="@dimen/margin_thirty_dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/superhero_description"
+                android:textSize="18sp"
+                android:textColor="@color/solidBlue"
+                android:id="@+id/radioButton5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:text="@string/read_more"
+                android:id="@+id/textView2"
+                android:textSize="18sp"
+                android:layout_marginStart="@dimen/margin_thirty_dp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/affordable_time"
+            android:textSize="18sp"
+            android:textColor="@color/sienna"
+            android:textAlignment="viewStart"
+            android:layout_margin="@dimen/margin_five_dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time1"
+                android:textSize="18sp"
+                android:textColor="@color/solidBlue"
+                android:id="@+id/radioButton1"
+                android:checked="true"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time2"
+                android:textSize="18sp"
+                android:textColor="@color/solidBlue"
+                android:id="@+id/radioButton2"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time3"
+                android:textSize="18sp"
+                android:textColor="@color/solidBlue"
+                android:id="@+id/radioButton3"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time4"
+                android:textSize="18sp"
+                android:textColor="@color/solidBlue"
+                android:id="@+id/radioButton6"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time5"
+                android:textSize="18sp"
+                android:textColor="@color/solidBlue"
+                android:id="@+id/radioButton7"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_me"
+            android:textSize="18sp"
+            android:textColor="@color/sienna"
+            android:textAlignment="viewStart"
+            android:layout_margin="@dimen/margin_five_dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/separate"
+            android:textSize="18sp"
+            android:textColor="@color/solidBlue"
+            android:textAlignment="viewStart"
+            android:layout_margin="@dimen/margin_five_dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:hint="@string/your_answer"
+            android:id="@+id/aboutMeEditText"
+            android:padding="@dimen/margin_five_dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:background="@drawable/edit_text_border"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/introduced_through"
+            android:textSize="18sp"
+            android:textColor="@color/sienna"
+            android:textAlignment="viewStart"
+            android:layout_margin="@dimen/margin_five_dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/facebook_page"
+            android:textSize="18sp"
+            android:textColor="@color/solidBlue"
+            android:id="@+id/checkBox1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:text="@string/link"
+            android:id="@+id/textView3"
+            android:textSize="18sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="@dimen/margin_thirty_dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/website"
+            android:textSize="18sp"
+            android:textColor="@color/solidBlue"
+            android:id="@+id/checkBox2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:text="@string/link"
+            android:id="@+id/textView4"
+            android:textSize="18sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="@dimen/margin_thirty_dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/media"
+            android:textSize="18sp"
+            android:textColor="@color/solidBlue"
+            android:id="@+id/checkBox3" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/friend"
+            android:textSize="18sp"
+            android:textColor="@color/solidBlue"
+            android:id="@+id/checkBox4" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/submit"
+            android:id="@+id/submitButton"
+            android:textColor="@color/white"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:background="@drawable/button_background"
+            android:layout_marginBottom="@dimen/margin_ten_dp"
+            android:layout_marginTop="@dimen/margin_ten_dp"/>
+
+</LinearLayout>
+

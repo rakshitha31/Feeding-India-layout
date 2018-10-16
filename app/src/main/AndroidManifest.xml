@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.developer.feedingindia">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- maps permissions -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activities.SignInActivity"
+            android:configChanges="screenSize|orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.DonorSignUpActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".activities.ResetPasswordActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".activities.HungerHeroSignUpActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".activities.VerificationActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".activities.HungerSpotsMapActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".activities.ExistingHungerHeroActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".activities.FoodLocation"
+            android:configChanges="screenSize|orientation"/>
+        <!-- google maps api key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyByQbL7JiZeUoSVx6-rtXCS_eWVfb-TaVI"/>
+        <!-- google play services version number -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+    </application>
+
+</manifest>

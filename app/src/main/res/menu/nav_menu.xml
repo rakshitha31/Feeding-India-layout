@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <group android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_menu_item_home"
+              android:title="@string/home"
+              android:orderInCategory="100"/>
+
+        <item android:id="@+id/nav_menu_item_profile"
+              android:title="@string/profile"
+              android:orderInCategory="200"/>
+
+        <item android:id="@+id/nav_menu_item_notifications"
+              android:title="@string/notifications"
+              android:orderInCategory="300"
+              app:actionLayout="@layout/menu_counter"/>
+
+        <item android:id="@+id/nav_menu_item_donations"
+              android:title="@string/my_donations"
+              android:orderInCategory="400"/>
+
+        <item android:id="@+id/nav_menu_item_deliveries"
+              android:title="@string/my_deliveries"
+              android:orderInCategory="500"/>
+
+        <item android:id="@+id/nav_menu_item_hunger_spots"
+              android:title="@string/hunger_spots"
+              android:orderInCategory="600"/>
+
+        <item android:id="@+id/nav_menu_contact_us"
+              android:title="@string/contact_us"
+              android:orderInCategory="900"/>
+
+        <item android:id="@+id/nav_menu_item_about_us"
+              android:title="@string/about_us"
+              android:orderInCategory="1000"/>
+
+        </group>
+
+</menu>
