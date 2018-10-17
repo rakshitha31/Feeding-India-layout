@@ -19,11 +19,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/alert_text"
-            android:textSize="18sp"
-            android:textColor="@color/stratos"
+            android:layout_margin="@dimen/margin_five_dp"
             android:gravity="center"
-            android:layout_margin="@dimen/margin_five_dp" />
+            android:text="@string/alert_text"
+            android:textColor="@color/stratos"
+            android:textSize="18sp"
+            android:textStyle="italic" />
 
         <TextView
             android:layout_width="match_parent"
@@ -35,15 +36,16 @@
             android:layout_margin="@dimen/margin_five_dp" />
 
         <EditText
+            android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="@string/enter_email"
-            android:id="@+id/emailEditText"
-            android:padding="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/margin_five_dp"
             android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/edit_text_border"/>
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/enter_email"
+            android:inputType="textEmailAddress"
+            android:padding="5dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -55,15 +57,16 @@
             android:layout_margin="@dimen/margin_five_dp" />
 
         <EditText
+            android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="@string/create_password"
-            android:id="@+id/passwordEditText"
-            android:padding="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/margin_five_dp"
             android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/edit_text_border"/>
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/create_password"
+            android:inputType="textPassword"
+            android:padding="@dimen/margin_five_dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -78,21 +81,22 @@
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="@dimen/forty_dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="@dimen/margin_five_dp"
             android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/edit_text_border"/>
+            android:background="@drawable/edit_text_border" />
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             style="?android:attr/borderlessButtonStyle"
-            android:text="@string/submit"
-            android:textColor="@color/white"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="@dimen/margin_five_dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/button_background"
-            android:onClick="onClickSubmitButton" />
+            android:onClick="onClickSubmitButton"
+            android:text="@string/submit"
+            android:textColor="@color/white" />
 
 
     </LinearLayout>

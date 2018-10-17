@@ -16,12 +16,21 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Details of Delivery"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="24sp" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/root_layout_margin"
             android:text="@string/donor_name"
-            android:textSize="18sp"
-            android:textColor="@color/stratos"
-            android:layout_margin="@dimen/root_layout_margin" />
+            android:textColor="@color/another_black"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,10 +43,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/root_layout_margin"
             android:text="@string/donor_contact_number"
-            android:textSize="18sp"
-            android:textColor="@color/stratos"
-            android:layout_margin="@dimen/root_layout_margin" />
+            android:textColor="@color/another_black"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,10 +61,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/root_layout_margin"
             android:text="@string/donor_address"
-            android:textSize="18sp"
-            android:textColor="@color/stratos"
-            android:layout_margin="@dimen/root_layout_margin" />
+            android:textColor="@color/another_black"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,10 +77,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/root_layout_margin"
             android:text="@string/hunger_spot_address"
-            android:textSize="18sp"
-            android:textColor="@color/stratos"
-            android:layout_margin="@dimen/root_layout_margin" />
+            android:textColor="@color/another_black"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -85,10 +94,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/root_layout_margin"
             android:text="@string/status_of_delivery"
-            android:textSize="18sp"
-            android:textColor="@color/stratos"
-            android:layout_margin="@dimen/root_layout_margin" />
+            android:textColor="@color/another_black"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"

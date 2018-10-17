@@ -13,8 +13,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="37dp"
         android:text="SUBMIT HUNGER SPOT"
+        android:textColor="#fff"
         android:onClick="onSubmitHungerSpot"
-        android:background="@color/sienna"
+        android:background="@color/seagreen"
         android:padding="10dp"/>
 
 

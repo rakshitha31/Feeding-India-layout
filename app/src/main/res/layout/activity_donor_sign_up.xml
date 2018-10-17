@@ -15,23 +15,26 @@
         android:scrollbars="vertical"
         android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/user_form"
-                android:textSize="30sp"
-                android:textColor="@color/stratos"
-                android:textAlignment="center"
-                android:layout_margin="@dimen/margin_five_dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_five_dp"
+            android:fontFamily="cursive"
+            android:text="@string/user_form"
+            android:textAlignment="center"
+            android:textColor="@color/stratos"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/name"
-                android:textSize="18sp"
-                android:textColor="@color/sienna"
-                android:textAlignment="viewStart"
-                android:layout_margin="@dimen/margin_five_dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_five_dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/name"
+            android:textAlignment="viewStart"
+            android:textColor="@color/sienna"
+            android:textSize="18sp" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -53,22 +56,24 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_five_dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
                     android:text="@string/dob"
-                    android:textSize="18sp"
                     android:textColor="@color/sienna"
-                    android:layout_margin="@dimen/margin_five_dp" />
+                    android:textSize="18sp" />
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:textColor="@color/solidBlue"
-                    android:gravity="center"
                     android:id="@+id/dobTextView"
-                    android:background="@drawable/edit_text_border" />
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/edit_text_border"
+                    android:gravity="center"
+                    android:textColor="@color/solidBlue"
+                    android:textSize="18sp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -89,16 +94,17 @@
                 android:textAlignment="viewStart"
                 android:layout_margin="@dimen/margin_five_dp" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="@string/enter_email"
-                android:id="@+id/emailEditText"
-                android:padding="5dp"
-                android:layout_marginLeft="@dimen/margin_five_dp"
-                android:layout_marginRight="@dimen/margin_five_dp"
-                android:background="@drawable/edit_text_border"/>
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/enter_email"
+            android:inputType="textEmailAddress"
+            android:padding="5dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -109,16 +115,17 @@
                 android:textAlignment="viewStart"
                 android:layout_margin="@dimen/margin_five_dp" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="@string/create_password"
-                android:id="@+id/passwordEditText"
-                android:padding="@dimen/margin_five_dp"
-                android:layout_marginLeft="@dimen/margin_five_dp"
-                android:layout_marginRight="@dimen/margin_five_dp"
-                android:background="@drawable/edit_text_border"/>
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/create_password"
+            android:inputType="textPassword"
+            android:padding="@dimen/margin_five_dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -129,13 +136,14 @@
                 android:textAlignment="viewStart"
                 android:layout_margin="@dimen/margin_five_dp" />
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/forty_dp"
-                android:layout_marginLeft="@dimen/margin_five_dp"
-                android:layout_marginRight="@dimen/margin_five_dp"
-                android:background="@drawable/edit_text_border"/>
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/forty_dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:background="@drawable/edit_text_border" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -146,29 +154,32 @@
                 android:textAlignment="viewStart"
                 android:layout_margin="@dimen/margin_five_dp" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:hint="@string/enter_number"
-                android:maxLength="10"
-                android:id="@+id/mobileNumberEditText"
-                android:padding="5dp"
-                android:layout_marginLeft="@dimen/margin_five_dp"
-                android:layout_marginRight="@dimen/margin_five_dp"
-                android:background="@drawable/edit_text_border"/>
+        <EditText
+            android:id="@+id/mobileNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/enter_number"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:padding="5dp" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="?android:attr/borderlessButtonStyle"
-                android:text="@string/submit"
-                android:textColor="@color/white"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="@dimen/margin_five_dp"
-                android:layout_marginLeft="@dimen/margin_five_dp"
-                android:background="@drawable/button_background"
-                android:onClick="onClickSubmitButton" />
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_background"
+            android:onClick="onClickSubmitButton"
+            android:padding="3dp"
+            android:text="@string/submit"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

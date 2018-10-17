@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@string/educational_background"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="5dp" />
 
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="@string/currently_part_of"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:text="@string/state"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:text="@string/locality"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:text="@string/pin_code"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:text="@string/reason_for_joining"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:text="@string/responsibility"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -153,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/hunger_hero_description"
                 android:textSize="18sp"
-                android:textColor="@color/solidBlue"
+                android:textColor="@color/green5"
                 android:id="@+id/radioButton4"
                 android:checked="true"/>
 
@@ -171,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/superhero_description"
                 android:textSize="18sp"
-                android:textColor="@color/solidBlue"
+                android:textColor="@color/green5"
                 android:id="@+id/radioButton5"/>
 
             <TextView
@@ -190,7 +190,7 @@
             android:layout_height="wrap_content"
             android:text="@string/affordable_time"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -204,7 +204,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/time1"
                 android:textSize="18sp"
-                android:textColor="@color/solidBlue"
+                android:textColor="@color/green1"
                 android:id="@+id/radioButton1"
                 android:checked="true"/>
 
@@ -213,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/time2"
                 android:textSize="18sp"
-                android:textColor="@color/solidBlue"
+                android:textColor="@color/green2"
                 android:id="@+id/radioButton2"/>
 
             <RadioButton
@@ -221,7 +221,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/time3"
                 android:textSize="18sp"
-                android:textColor="@color/solidBlue"
+                android:textColor="@color/green3"
                 android:id="@+id/radioButton3"/>
 
             <RadioButton
@@ -229,7 +229,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/time4"
                 android:textSize="18sp"
-                android:textColor="@color/solidBlue"
+                android:textColor="@color/green4"
                 android:id="@+id/radioButton6"/>
 
             <RadioButton
@@ -237,7 +237,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/time5"
                 android:textSize="18sp"
-                android:textColor="@color/solidBlue"
+                android:textColor="@color/green5"
                 android:id="@+id/radioButton7"/>
 
         </RadioGroup>
@@ -247,7 +247,7 @@
             android:layout_height="wrap_content"
             android:text="@string/about_me"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -256,7 +256,7 @@
             android:layout_height="wrap_content"
             android:text="@string/separate"
             android:textSize="18sp"
-            android:textColor="@color/solidBlue"
+            android:textColor="@color/light_black"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -276,7 +276,7 @@
             android:layout_height="wrap_content"
             android:text="@string/introduced_through"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -285,7 +285,7 @@
             android:layout_height="wrap_content"
             android:text="@string/facebook_page"
             android:textSize="18sp"
-            android:textColor="@color/solidBlue"
+            android:textColor="@color/black"
             android:id="@+id/checkBox1" />
 
         <TextView
@@ -293,6 +293,7 @@
             android:layout_height="wrap_content"
             android:autoLink="web"
             android:text="@string/link"
+            android:textColor="@color/solidBlue"
             android:id="@+id/textView3"
             android:textSize="18sp"
             android:layout_marginTop="0dp"
@@ -303,7 +304,7 @@
             android:layout_height="wrap_content"
             android:text="@string/website"
             android:textSize="18sp"
-            android:textColor="@color/solidBlue"
+            android:textColor="@color/black"
             android:id="@+id/checkBox2" />
 
         <TextView
@@ -311,6 +312,7 @@
             android:layout_height="wrap_content"
             android:autoLink="web"
             android:text="@string/link"
+            android:textColor="@color/solidBlue"
             android:id="@+id/textView4"
             android:textSize="18sp"
             android:layout_marginTop="0dp"
@@ -321,7 +323,7 @@
             android:layout_height="wrap_content"
             android:text="@string/media"
             android:textSize="18sp"
-            android:textColor="@color/solidBlue"
+            android:textColor="@color/black"
             android:id="@+id/checkBox3" />
 
         <CheckBox
@@ -329,7 +331,7 @@
             android:layout_height="wrap_content"
             android:text="@string/friend"
             android:textSize="18sp"
-            android:textColor="@color/solidBlue"
+            android:textColor="@color/black"
             android:id="@+id/checkBox4" />
 
         <Button

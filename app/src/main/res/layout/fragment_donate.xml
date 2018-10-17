@@ -12,95 +12,104 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_five_dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif"
         android:text="@string/donation_details"
-        android:textSize="25sp"
-        android:textColor="@color/stratos"
         android:textAlignment="center"
-        android:layout_margin="@dimen/margin_five_dp" />
+        android:textColor="@color/stratos"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/food_description"
         android:textSize="18sp"
-        android:textColor="@color/sienna"
+        android:textColor="@color/light_black"
         android:textAlignment="center"
         android:layout_margin="@dimen/margin_five_dp" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:hint="@string/enter_description"
         android:id="@+id/foodDescriptionEditText"
-        android:padding="@dimen/margin_five_dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="@dimen/margin_five_dp"
         android:layout_marginRight="@dimen/margin_five_dp"
-        android:background="@drawable/edit_text_border"/>
+        android:background="@drawable/edit_text_border"
+        android:hint="@string/enter_description"
+        android:inputType="textMultiLine"
+        android:padding="@dimen/margin_five_dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_five_dp"
         android:text="@string/food_prepared_on"
-        android:textSize="18sp"
-        android:textColor="@color/sienna"
         android:textAlignment="center"
-        android:layout_margin="@dimen/margin_five_dp" />
+        android:textColor="@color/light_black"
+        android:textSize="18sp" />
 
     <EditText
+        android:id="@+id/foodPreparedOnEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="@string/your_answer"
-        android:id="@+id/foodPreparedOnEditText"
-        android:padding="@dimen/margin_five_dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="@dimen/margin_five_dp"
         android:layout_marginRight="@dimen/margin_five_dp"
-        android:background="@drawable/edit_text_border"/>
+        android:background="@drawable/edit_text_border"
+        android:hint="@string/your_answer"
+        android:inputType="text"
+        android:padding="@dimen/margin_five_dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_five_dp"
         android:text="@string/has_container"
-        android:textSize="18sp"
-        android:textColor="@color/sienna"
         android:textAlignment="center"
-        android:layout_margin="@dimen/margin_five_dp" />
+        android:textColor="@color/light_black"
+        android:textSize="18sp" />
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <RadioButton
+            android:id="@+id/hasContainerYesRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/yes"
-            android:textSize="15sp"
-            android:textColor="@color/solidBlue"
             android:checked="true"
             android:padding="@dimen/margin_one_dp"
-            android:id="@+id/hasContainerYesRadioButton"/>
+            android:text="@string/yes"
+            android:buttonTint="@color/seagreen"
+            android:textColor="@color/solidBlue"
+            android:textSize="15sp" />
 
         <RadioButton
+            android:id="@+id/hasContainerNoRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no"
-            android:textSize="15sp"
-            android:textColor="@color/solidBlue"
             android:padding="@dimen/margin_one_dp"
-            android:id="@+id/hasContainerNoRadioButton"/>
+            android:text="@string/no"
+            android:textColor="@color/solidBlue"
+            android:buttonTint="@color/sienna"
+            android:textSize="15sp" />
 
     </RadioGroup>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Food is Veg or Non Veg"
-        android:textSize="18sp"
-        android:textColor="@color/sienna"
+        android:layout_margin="@dimen/margin_five_dp"
+        android:text="Food Type"
         android:textAlignment="center"
-        android:layout_margin="@dimen/margin_five_dp" />
+        android:textColor="@color/light_black"
+        android:textSize="18sp" />
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -109,23 +118,25 @@
         android:gravity="center">
 
         <RadioButton
+            android:id="@+id/vegFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="veg"
-            android:textSize="15sp"
-            android:textColor="@color/solidBlue"
             android:checked="true"
             android:padding="@dimen/margin_one_dp"
-            android:id="@+id/vegFood"/>
+            android:buttonTint="@color/seagreen"
+            android:text="veg"
+            android:textColor="@color/solidBlue"
+            android:textSize="15sp" />
 
         <RadioButton
+            android:id="@+id/nonVegFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="non veg"
-            android:textSize="15sp"
-            android:textColor="@color/solidBlue"
             android:padding="@dimen/margin_one_dp"
-            android:id="@+id/nonVegFood"/>
+            android:text="non veg"
+            android:buttonTint="@color/sienna"
+            android:textColor="@color/solidBlue"
+            android:textSize="15sp" />
 
     </RadioGroup>
 
@@ -133,25 +144,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/locate_on_map"
-                    android:textAllCaps="true"
-                    android:textSize="18sp"
-                    android:textColor="@color/sienna"
-                    android:layout_margin="@dimen/margin_five_dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_five_dp"
+            android:text="@string/locate_on_map"
+            android:textAllCaps="true"
+            android:textColor="@color/light_black"
+            android:textSize="18sp" />
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_location"
-                    android:background="@color/white"
-                    android:id="@+id/locationButton"
-                    android:contentDescription="@string/locate_on_map"/>
+        <ImageButton
+            android:id="@+id/locationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:contentDescription="@string/locate_on_map"
+            android:src="@drawable/ic_location" />
 
 
     </LinearLayout>
@@ -159,27 +171,28 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="5dp"
         android:text="Choose Food Image"
         android:textAlignment="center"
-        android:textColor="@color/sienna"
-        android:textSize="18sp"
-        android:layout_gravity="center"/>
+        android:textColor="@color/light_black"
+        android:textSize="18sp" />
     <ImageButton
         android:layout_width="170dp"
         android:layout_height="150dp"
         android:id="@+id/food_image_button"
-        android:src="@color/solidBlue"
+        android:src="@drawable/select_img"
+        android:scaleType="fitCenter"
         android:layout_gravity="center"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_five_dp"
         android:text="@string/additional_contact_number"
-        android:textSize="18sp"
-        android:textColor="@color/sienna"
         android:textAlignment="center"
-        android:layout_margin="@dimen/margin_five_dp" />
+        android:textColor="@color/light_black"
+        android:textSize="18sp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -193,16 +206,16 @@
         android:background="@drawable/edit_text_border"/>
 
     <Button
+        android:id="@+id/submitButton"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="?android:attr/borderlessButtonStyle"
-        android:id="@+id/submitButton"
-        android:text="@string/submit"
-        android:textColor="@color/white"
-        android:layout_marginTop="@dimen/margin_ten_dp"
         android:layout_marginBottom="@dimen/margin_ten_dp"
         android:layout_marginLeft="@dimen/margin_five_dp"
         android:layout_marginRight="@dimen/margin_five_dp"
-        android:background="@drawable/button_background" />
+        android:layout_marginTop="@dimen/margin_ten_dp"
+        android:background="@drawable/button_background"
+        android:text="@string/submit"
+        android:textColor="@color/white" />
 
 </LinearLayout>

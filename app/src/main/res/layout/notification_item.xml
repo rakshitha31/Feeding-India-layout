@@ -17,35 +17,38 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:layout_margin="5dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="serif"
                 android:text="EVENT NAME : "
-                android:textSize="20sp"
-                android:textColor="@color/sienna"/>
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
             <TextView
                 android:id="@+id/name_event"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/sienna"
-                android:text="event"/>
+                android:text="event"
+                android:textColor="@color/light_black"
+                android:textSize="20sp" />
         </LinearLayout>
         <ImageView
             android:id="@+id/image_event"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_margin="5dp"
-            android:src="@color/solidBlue"/>
+            android:src="@drawable/select_img"/>
+
         <TextView
             android:id="@+id/description_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="description"
             android:layout_margin="5dp"
-            android:textColor="@color/solidBlue"
-            />
+            android:text="Description"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

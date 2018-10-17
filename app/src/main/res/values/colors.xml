@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="sienna">#32CD32</color>
+    <color name="colorPrimary">#2c964f</color>
+    <color name="colorPrimaryDark">#006725</color>
+    <color name="colorAccent">#ff4081</color>
+    <color name="sienna">#882222</color>
     <color name="white">#ffffff</color>
     <color name="solidBlue">#0000ff</color>
     <color name="stratos">#000045</color>
     <color name="purple">#551a8b</color>
-    <color name="black">#000</color>
+    <color name="black">#000000</color>
     <color name="cement">#bfbfbf</color>
+    <color name="meduim_seagreen">#3cb371</color>
+    <color name="seagreen">#2e8b57</color>
+    <color name="green1">#097b09</color>
+    <color name="green2">#086b08</color>
+    <color name="green3">#075c07</color>
+    <color name="green4">#064d06</color>
+    <color name="green5">#043d04</color>
+    <color name="light_black">#666666</color>
+    <color name="another_black">#4c4c4c</color>
 </resources>

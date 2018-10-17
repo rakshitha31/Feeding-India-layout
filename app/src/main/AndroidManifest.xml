@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.SignInActivity"
+            android:name=".activities.SplashActivity"
             android:configChanges="screenSize|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.SignInActivity"
+            android:configChanges="screenSize|orientation" />
         <activity
             android:name=".activities.DonorSignUpActivity"
             android:configChanges="screenSize|orientation" />

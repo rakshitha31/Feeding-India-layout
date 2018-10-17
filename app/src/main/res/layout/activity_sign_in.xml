@@ -12,172 +12,190 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
             android:orientation="vertical"
-            android:scrollbars="vertical"
-            android:gravity="center">
+            android:scrollbars="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textSize="30sp"
-            android:textColor="@color/stratos"
-            android:textAlignment="center"
-            android:layout_marginBottom="@dimen/margin_ten_dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_ten_dp"
+                    android:fontFamily="cursive"
+                    android:text="@string/app_name"
+                    android:textAlignment="center"
+                    android:textColor="@color/stratos"
+                    android:textColorLink="@color/seagreen"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/username"
-            android:textSize="18sp"
-            android:textColor="@color/sienna"
-            android:textAlignment="viewStart"
-            android:layout_margin="@dimen/margin_five_dp" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="@string/enter_username"
-            android:id="@+id/emailEditText"
-            android:padding="5dp"
-            android:layout_marginLeft="@dimen/margin_three_dp"
-            android:layout_marginRight="@dimen/margin_three_dp"
-            android:background="@drawable/edit_text_border"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_five_dp"
+                    android:text="@string/username"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/sienna"
+                    android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/password"
-            android:textSize="18sp"
-            android:textColor="@color/sienna"
-            android:textAlignment="viewStart"
-            android:layout_margin="@dimen/margin_five_dp" />
+                <EditText
+                    android:id="@+id/emailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_three_dp"
+                    android:layout_marginRight="@dimen/margin_three_dp"
+                    android:background="@drawable/edit_text_border"
+                    android:hint="@string/enter_username"
+                    android:inputType="textEmailAddress"
+                    android:padding="5dp" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="@string/enter_password"
-            android:id="@+id/passwordEditText"
-            android:padding="@dimen/margin_five_dp"
-            android:layout_marginLeft="@dimen/margin_three_dp"
-            android:layout_marginRight="@dimen/margin_three_dp"
-            android:background="@drawable/edit_text_border"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_five_dp"
+                    android:text="@string/password"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/sienna"
+                    android:textSize="18sp" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_in"
-            android:textColor="@color/white"
-            style="?attr/borderlessButtonStyle"
-            android:onClick="onClickSignInButton"
-            android:layout_marginTop="@dimen/margin_five_dp"
-            android:layout_marginLeft="@dimen/margin_five_dp"
-            android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/button_background"/>
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginLeft="@dimen/margin_three_dp"
+                    android:layout_marginRight="@dimen/margin_three_dp"
+                    android:background="@drawable/edit_text_border"
+                    android:hint="@string/enter_password"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/margin_five_dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <Button
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_five_dp"
+                    android:layout_marginRight="@dimen/margin_five_dp"
+                    android:layout_marginTop="@dimen/margin_five_dp"
+                    android:background="@drawable/button_background"
+                    android:onClick="onClickSignInButton"
+                    android:text="@string/sign_in"
+                    android:textColor="@color/white" />
 
-            <CheckBox
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/remember_me"
-                android:textSize="15sp"
-                android:textColor="@color/solidBlue"
-                android:id="@+id/rememberMeCheckBox"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/forgotPasswordTextView"
-                android:text="@string/forgot_password"
-                android:textSize="15sp"
-                android:textColor="@color/solidBlue"
-                android:textAlignment="viewEnd"
-                android:padding="@dimen/margin_five_dp" />
+                        <CheckBox
+                            android:id="@+id/rememberMeCheckBox"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/remember_me"
+                            android:textColor="@color/solidBlue"
+                            android:textSize="15sp" />
 
-        </LinearLayout>
+                        <TextView
+                            android:id="@+id/forgotPasswordTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="@dimen/margin_five_dp"
+                            android:text="@string/forgot_password"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/solidBlue"
+                            android:textSize="15sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/donate"
-            android:textSize="20sp"
-            android:id="@+id/donate"
-            android:textColor="@color/sienna"
-            android:textAlignment="center"
-            android:layout_marginTop="@dimen/margin_ten_dp"/>
+                </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/not_a_user"
-            android:textSize="15sp"
-            android:textColor="@color/solidBlue"
-            android:textAlignment="center"
-            android:layout_marginTop="@dimen/margin_ten_dp"/>
+                <TextView
+                    android:id="@+id/donate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_ten_dp"
+                    android:text="@string/donate"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_up_as_donor"
-            android:textColor="@color/white"
-            style="?attr/borderlessButtonStyle"
-            android:onClick="onClickDonorSignUpButton"
-            android:layout_marginLeft="@dimen/margin_five_dp"
-            android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/button_background" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_ten_dp"
+                    android:text="@string/not_a_user"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="15sp" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_up_as_hungerhero"
-            android:textColor="@color/white"
-            style="?attr/borderlessButtonStyle"
-            android:onClick="onClickHungerHeroSignUpButton"
-            android:layout_marginTop="@dimen/margin_ten_dp"
-            android:layout_marginLeft="@dimen/margin_five_dp"
-            android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/button_background" />
+                <Button
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_five_dp"
+                    android:layout_marginRight="@dimen/margin_five_dp"
+                    android:background="@drawable/button_background"
+                    android:onClick="onClickDonorSignUpButton"
+                    android:text="@string/sign_up_as_donor"
+                    android:textColor="@color/white" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/already_a_hungerhero"
-            android:textColor="@color/white"
-            style="?attr/borderlessButtonStyle"
-            android:onClick="onClickAlreadyHungerHero"
-            android:layout_marginTop="@dimen/margin_ten_dp"
-            android:layout_marginLeft="@dimen/margin_five_dp"
-            android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/button_background" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-                <ImageButton
-                    android:id="@+id/facebook_icon"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/facebook_icon" />
+                <Button
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_five_dp"
+                    android:layout_marginRight="@dimen/margin_five_dp"
+                    android:layout_marginTop="@dimen/margin_ten_dp"
+                    android:background="@drawable/button_background"
+                    android:onClick="onClickHungerHeroSignUpButton"
+                    android:text="@string/sign_up_as_hungerhero"
+                    android:textColor="@color/white" />
 
-                <ImageButton
-                    android:id="@+id/twitter_icon"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/twitter" />
+                <Button
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_five_dp"
+                    android:layout_marginRight="@dimen/margin_five_dp"
+                    android:layout_marginTop="@dimen/margin_ten_dp"
+                    android:background="@drawable/button_background"
+                    android:onClick="onClickAlreadyHungerHero"
+                    android:text="@string/already_a_hungerhero"
+                    android:textColor="@color/white" />
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/facebook_icon"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/facebook_icon" />
+
+                        <ImageButton
+                            android:id="@+id/twitter_icon"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/twitter" />
+
+                        <ImageButton
+                            android:id="@+id/instagram_icon"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/instagram_icon" />
+
+
+
+                </LinearLayout>
 
         </LinearLayout>
 

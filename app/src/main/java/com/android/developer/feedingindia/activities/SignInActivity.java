@@ -45,7 +45,7 @@ public class SignInActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FirebaseUser mFireBaseUser;
-    private ImageButton facebookIcon,twitterIcon;
+    private ImageButton facebookIcon,twitterIcon,instagramIcon;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,7 @@ public class SignInActivity extends AppCompatActivity {
         rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox);
         facebookIcon = findViewById(R.id.facebook_icon);
         twitterIcon = findViewById(R.id.twitter_icon);
+        instagramIcon = findViewById(R.id.instagram_icon);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -275,6 +276,14 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.twitter.com/FeedingIndia"));
+                startActivity(intent);
+            }
+        });
+
+        instagramIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/feedingindia/"));
                 startActivity(intent);
             }
         });

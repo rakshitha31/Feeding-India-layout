@@ -29,20 +29,21 @@
             android:layout_height="wrap_content"
             android:text="@string/name"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
         <EditText
+            android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="@string/enter_full_name"
-            android:id="@+id/nameEditText"
-            android:padding="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/margin_five_dp"
             android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/edit_text_border"/>
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/enter_full_name"
+            android:inputType="textPersonName"
+            android:padding="@dimen/margin_five_dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,7 +58,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/dob"
                 android:textSize="18sp"
-                android:textColor="@color/sienna"
+                android:textColor="@color/stratos"
                 android:layout_margin="@dimen/margin_five_dp" />
 
             <TextView
@@ -85,108 +86,113 @@
             android:layout_height="wrap_content"
             android:text="@string/email"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
         <EditText
+            android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="@string/enter_email"
-            android:id="@+id/emailEditText"
-            android:padding="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/margin_five_dp"
             android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/edit_text_border"/>
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/enter_email"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/margin_five_dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/required_password"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
         <EditText
+            android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="@string/create_password"
-            android:id="@+id/passwordEditText"
-            android:padding="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/margin_five_dp"
             android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/edit_text_border"/>
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/create_password"
+            android:inputType="textPassword"
+            android:padding="@dimen/margin_five_dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mobile_number"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
         <EditText
+            android:id="@+id/mobileNumberEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:hint="@string/enter_number"
-            android:maxLength="10"
-            android:id="@+id/mobileNumberEditText"
-            android:padding="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/margin_five_dp"
             android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/edit_text_border"/>
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/enter_number"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:padding="@dimen/margin_five_dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/educational_background"
             android:textSize="18sp"
-            android:textColor="#882222"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="5dp" />
 
         <EditText
+            android:id="@+id/educationalBackgroundEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="@string/enter_edu_background"
-            android:id="@+id/educationalBackgroundEditText"
-            android:padding="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/margin_five_dp"
             android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/edit_text_border"/>
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/enter_edu_background"
+            android:inputType="text"
+            android:padding="@dimen/margin_five_dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/currently_part_of"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
         <EditText
+            android:id="@+id/currentlyPartOfEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="@string/your_answer"
-            android:id="@+id/currentlyPartOfEditText"
-            android:padding="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/margin_five_dp"
             android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/edit_text_border"/>
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/your_answer"
+            android:inputType="text"
+            android:padding="@dimen/margin_five_dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/state"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -203,7 +209,7 @@
             android:layout_height="wrap_content"
             android:text="@string/city"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -220,7 +226,7 @@
             android:layout_height="wrap_content"
             android:text="@string/locality"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -240,48 +246,50 @@
             android:layout_height="wrap_content"
             android:text="@string/pin_code"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
         <EditText
+            android:id="@+id/pinCodeEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="@string/enter_pin_code"
-            android:id="@+id/pinCodeEditText"
-            android:maxLength="6"
-            android:padding="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/margin_five_dp"
             android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/edit_text_border"/>
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/enter_pin_code"
+            android:inputType="number"
+            android:maxLength="6"
+            android:padding="@dimen/margin_five_dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/reason_for_joining"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
         <EditText
+            android:id="@+id/reasonForJoiningEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:hint="@string/your_answer"
-            android:id="@+id/reasonForJoiningEditText"
-            android:padding="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/margin_five_dp"
             android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/edit_text_border"/>
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/your_answer"
+            android:inputType="textMultiLine"
+            android:padding="@dimen/margin_five_dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/responsibility"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -290,39 +298,43 @@
             android:layout_height="wrap_content">
 
             <RadioButton
+                android:id="@+id/radioButton4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/black"
+                android:checked="true"
                 android:text="@string/hunger_hero_description"
-                android:textSize="18sp"
-                android:textColor="@color/solidBlue"
-                android:id="@+id/radioButton4"
-                android:checked="true"/>
+                android:textColor="@color/green5"
+                android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_thirty_dp"
                 android:autoLink="web"
+                android:buttonTint="@color/colorPrimary"
                 android:text="@string/read_more"
-                android:id="@+id/textView1"
-                android:textSize="18sp"
-                android:layout_marginStart="@dimen/margin_thirty_dp" />
+                android:textSize="18sp" />
 
             <RadioButton
+                android:id="@+id/radioButton5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/black"
                 android:text="@string/superhero_description"
-                android:textSize="18sp"
-                android:textColor="@color/solidBlue"
-                android:id="@+id/radioButton5"/>
+                android:textColor="@color/green5"
+                android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_thirty_dp"
                 android:autoLink="web"
                 android:text="@string/read_more"
-                android:id="@+id/textView2"
-                android:textSize="18sp"
-                android:layout_marginStart="@dimen/margin_thirty_dp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
         </RadioGroup>
 
@@ -331,7 +343,7 @@
             android:layout_height="wrap_content"
             android:text="@string/affordable_time"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
@@ -345,7 +357,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/time1"
                 android:textSize="18sp"
-                android:textColor="@color/solidBlue"
+                android:textColor="@color/green1"
+                android:buttonTint="@color/black"
                 android:id="@+id/radioButton1"
                 android:checked="true"/>
 
@@ -354,7 +367,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/time2"
                 android:textSize="18sp"
-                android:textColor="@color/solidBlue"
+                android:textColor="@color/green2"
+                android:buttonTint="@color/black"
                 android:id="@+id/radioButton2"/>
 
             <RadioButton
@@ -362,7 +376,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/time3"
                 android:textSize="18sp"
-                android:textColor="@color/solidBlue"
+                android:textColor="@color/green3"
+                android:buttonTint="@color/black"
                 android:id="@+id/radioButton3"/>
 
             <RadioButton
@@ -370,7 +385,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/time4"
                 android:textSize="18sp"
-                android:textColor="@color/solidBlue"
+                android:textColor="@color/green4"
+                android:buttonTint="@color/black"
                 android:id="@+id/radioButton6"/>
 
             <RadioButton
@@ -378,7 +394,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/time5"
                 android:textSize="18sp"
-                android:textColor="@color/solidBlue"
+                android:textColor="@color/green5"
+                android:buttonTint="@color/black"
                 android:id="@+id/radioButton7"/>
 
         </RadioGroup>
@@ -388,81 +405,84 @@
             android:layout_height="wrap_content"
             android:text="@string/about_me"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_five_dp"
             android:text="@string/separate"
-            android:textSize="18sp"
-            android:textColor="@color/solidBlue"
             android:textAlignment="viewStart"
-            android:layout_margin="@dimen/margin_five_dp" />
+            android:textColor="@color/cement"
+            android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/aboutMeEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:hint="@string/your_answer"
-            android:id="@+id/aboutMeEditText"
-            android:padding="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/margin_five_dp"
             android:layout_marginRight="@dimen/margin_five_dp"
-            android:background="@drawable/edit_text_border"/>
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/your_answer"
+            android:inputType="textMultiLine"
+            android:padding="@dimen/margin_five_dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/introduced_through"
             android:textSize="18sp"
-            android:textColor="@color/sienna"
+            android:textColor="@color/stratos"
             android:textAlignment="viewStart"
             android:layout_margin="@dimen/margin_five_dp" />
 
         <CheckBox
+            android:id="@+id/checkBox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/facebook_page"
-            android:textSize="18sp"
-            android:textColor="@color/solidBlue"
-            android:id="@+id/checkBox1" />
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_thirty_dp"
+            android:layout_marginTop="0dp"
             android:autoLink="web"
             android:text="@string/link"
-            android:id="@+id/textView3"
             android:textSize="18sp"
-            android:layout_marginTop="0dp"
-            android:layout_marginStart="@dimen/margin_thirty_dp" />
+            android:textStyle="italic" />
 
         <CheckBox
+            android:id="@+id/checkBox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/website"
-            android:textSize="18sp"
-            android:textColor="@color/solidBlue"
-            android:id="@+id/checkBox2" />
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_thirty_dp"
+            android:layout_marginTop="0dp"
             android:autoLink="web"
             android:text="@string/link"
-            android:id="@+id/textView4"
             android:textSize="18sp"
-            android:layout_marginTop="0dp"
-            android:layout_marginStart="@dimen/margin_thirty_dp" />
+            android:textStyle="italic" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/media"
             android:textSize="18sp"
-            android:textColor="@color/solidBlue"
+            android:textColor="@color/black"
             android:id="@+id/checkBox3" />
 
         <CheckBox
@@ -470,7 +490,7 @@
             android:layout_height="wrap_content"
             android:text="@string/friend"
             android:textSize="18sp"
-            android:textColor="@color/solidBlue"
+            android:textColor="@color/black"
             android:id="@+id/checkBox4" />
 
         <Button
