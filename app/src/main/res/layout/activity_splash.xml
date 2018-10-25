@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/background"
     android:layout_width="match_parent"
-    android:background="@drawable/splash_background"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:alpha="60"
+    android:background="@drawable/splash">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="300dp"
         android:layout_height="350dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
+        android:layout_centerInParent="true"
         android:src="@drawable/fi" />
 
     <TextView
@@ -23,7 +22,7 @@
         android:layout_marginBottom="117dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Feeding India"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColor="@color/seagreen"
         android:textSize="36sp"
         android:textStyle="bold" />
 

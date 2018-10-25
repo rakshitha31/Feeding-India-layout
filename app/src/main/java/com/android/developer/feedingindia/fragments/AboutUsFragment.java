@@ -15,7 +15,7 @@ import com.android.developer.feedingindia.R;
 public class AboutUsFragment extends Fragment {
 
 
-    private ImageButton facebookIcon,twitterIcon;
+    private ImageButton facebookIcon,twitterIcon, instagramIcon;
     View view;
     public AboutUsFragment() {
         // Required empty public constructor
@@ -29,6 +29,7 @@ public class AboutUsFragment extends Fragment {
         view =  inflater.inflate(R.layout.fragment_about_us, container, false);
         facebookIcon = view.findViewById(R.id.facebook_icon);
         twitterIcon = view.findViewById(R.id.twitter_icon);
+        instagramIcon=view.findViewById(R.id.instagram_icon);
         facebookIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,6 +42,14 @@ public class AboutUsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.twitter.com/FeedingIndia"));
+                startActivity(intent);
+            }
+        });
+
+        instagramIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.instagram.com/feedingindia/"));
                 startActivity(intent);
             }
         });

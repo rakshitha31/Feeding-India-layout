@@ -6,6 +6,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="@dimen/root_layout_margin"
+        android:id="@+id/formbkg"
+        android:background="#e8ffc7"
         tools:context=".fragments.FormFragment">
 
         <TextView
@@ -155,6 +157,7 @@
                 android:textSize="18sp"
                 android:textColor="@color/green5"
                 android:id="@+id/radioButton4"
+                android:buttonTint="@color/stratos"
                 android:checked="true"/>
 
             <TextView
@@ -163,6 +166,7 @@
                 android:autoLink="web"
                 android:text="@string/read_more"
                 android:id="@+id/textView1"
+                android:textColor="@color/solidBlue"
                 android:textSize="18sp"
                 android:layout_marginStart="@dimen/margin_thirty_dp" />
 
@@ -172,6 +176,7 @@
                 android:text="@string/superhero_description"
                 android:textSize="18sp"
                 android:textColor="@color/green5"
+                android:buttonTint="@color/stratos"
                 android:id="@+id/radioButton5"/>
 
             <TextView
@@ -179,6 +184,7 @@
                 android:layout_height="wrap_content"
                 android:autoLink="web"
                 android:text="@string/read_more"
+                android:textColor="@color/solidBlue"
                 android:id="@+id/textView2"
                 android:textSize="18sp"
                 android:layout_marginStart="@dimen/margin_thirty_dp" />
@@ -206,6 +212,7 @@
                 android:textSize="18sp"
                 android:textColor="@color/green1"
                 android:id="@+id/radioButton1"
+                android:buttonTint="@color/green1"
                 android:checked="true"/>
 
             <RadioButton
@@ -214,6 +221,7 @@
                 android:text="@string/time2"
                 android:textSize="18sp"
                 android:textColor="@color/green2"
+                android:buttonTint="@color/green2"
                 android:id="@+id/radioButton2"/>
 
             <RadioButton
@@ -222,6 +230,7 @@
                 android:text="@string/time3"
                 android:textSize="18sp"
                 android:textColor="@color/green3"
+                android:buttonTint="@color/green3"
                 android:id="@+id/radioButton3"/>
 
             <RadioButton
@@ -230,6 +239,7 @@
                 android:text="@string/time4"
                 android:textSize="18sp"
                 android:textColor="@color/green4"
+                android:buttonTint="@color/green4"
                 android:id="@+id/radioButton6"/>
 
             <RadioButton
@@ -238,6 +248,7 @@
                 android:text="@string/time5"
                 android:textSize="18sp"
                 android:textColor="@color/green5"
+                android:buttonTint="@color/green5"
                 android:id="@+id/radioButton7"/>
 
         </RadioGroup>
@@ -292,10 +303,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="@string/link"
+            android:text="https://www.facebook.com/feedingindia/"
             android:textColor="@color/solidBlue"
             android:id="@+id/textView3"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_marginTop="0dp"
             android:layout_marginStart="@dimen/margin_thirty_dp" />
 
@@ -303,7 +314,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/website"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textColor="@color/black"
             android:id="@+id/checkBox2" />
 
@@ -311,7 +322,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="@string/link"
+            android:text="https://www.feedingindia.org/"
             android:textColor="@color/solidBlue"
             android:id="@+id/textView4"
             android:textSize="18sp"

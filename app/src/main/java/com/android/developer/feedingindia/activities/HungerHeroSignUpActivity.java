@@ -242,11 +242,11 @@ public class HungerHeroSignUpActivity extends AppCompatActivity implements View.
         pinCode = pinCodeEditText.getText().toString().trim();
         reasonForJoining = reasonForJoiningEditText.getText().toString().trim();
         String aboutMe[] = aboutMeEditText.getText().toString().trim().split(",");
-        ArrayList<String> aboutMeList = new ArrayList<>();
+        aboutMeList = new ArrayList<>();
 
         if(userName.isEmpty() || userEmail.isEmpty() || userPassword.isEmpty() || userMobileNumber.isEmpty() ||
-           userDoB.equals("empty") || educationalBackground.isEmpty() || currentlyPartOf.isEmpty()  ||
-           locality.isEmpty() || pinCode.isEmpty() || reasonForJoining.isEmpty() || !(aboutMe.length>0) || !(introducedToFIThrough.size()>0))
+                userDoB.equals("empty") || educationalBackground.isEmpty() || currentlyPartOf.isEmpty()  ||
+                locality.isEmpty() || pinCode.isEmpty() || reasonForJoining.isEmpty() || !(aboutMe.length>0) || !(introducedToFIThrough.size()>0))
             makeToast("Fields cannot be empty!");
         else if(!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches())
             makeToast("Enter a valid email!");
@@ -291,19 +291,19 @@ public class HungerHeroSignUpActivity extends AppCompatActivity implements View.
         switch (view.getId()){
 
             case R.id.textView1:
-                openBrowser("https://www.google.com");
+                openBrowser("https://www.feedingindia.org/get-involved");
                 break;
 
             case R.id.textView2:
-                openBrowser("https://www.facebook.com");
+                openBrowser("https://www.feedingindia.org/the-challenge");
                 break;
 
             case R.id.textView3:
-                openBrowser("https://www.google.com");
+                openBrowser("https://www.facebook.com/feedingindia");
                 break;
 
             case R.id.textView4:
-                openBrowser("https://www.facebook.com");
+                openBrowser("https://www.feedingindia.org");
                 break;
 
             case R.id.radioButton1 :

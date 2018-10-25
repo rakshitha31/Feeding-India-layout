@@ -22,29 +22,45 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/scrollView"
-        android:layout_alignBottom="@+id/scrollView"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_gravity="center"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="500dp"
         android:layout_marginBottom="17dp"
         android:orientation="horizontal">
+
+
         <ImageButton
             android:id="@+id/facebook_icon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="60dp"
             android:adjustViewBounds="true"
+            android:background="#fff"
+
             android:scaleType="centerInside"
             android:src="@drawable/facebook_icon" />
 
         <ImageButton
             android:id="@+id/twitter_icon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="60dp"
             android:adjustViewBounds="true"
+            android:background="#fff"
+
             android:scaleType="centerInside"
             android:src="@drawable/twitter" />
+
+        <ImageButton
+            android:id="@+id/instagram_icon"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="60dp"
+            android:adjustViewBounds="true"
+            android:background="#fff"
+
+            android:scaleType="centerInside"
+            android:src="@drawable/instagram_icon" />
     </LinearLayout>
 
 </RelativeLayout>

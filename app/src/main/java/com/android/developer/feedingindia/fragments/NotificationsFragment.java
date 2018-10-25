@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.developer.feedingindia.R;
+import com.android.developer.feedingindia.activities.SimpleDIviderItemDecoration;
 import com.android.developer.feedingindia.pojos.FeedingIndiaEvent;
 import com.android.developer.feedingindia.adapters.NotificationsAdapter;
 import com.google.firebase.database.ChildEventListener;
@@ -30,6 +32,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import static android.support.v7.widget.RecyclerView.HORIZONTAL;
+import static android.support.v7.widget.RecyclerView.VERTICAL;
 
 
 public class NotificationsFragment extends Fragment {
@@ -60,8 +65,6 @@ public class NotificationsFragment extends Fragment {
         else
             mBuilder = new android.support.v7.app.AlertDialog.Builder(getContext());
 
-
-
     }
 
     private void enableUseInteraction() {
@@ -83,6 +86,11 @@ public class NotificationsFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.notification_recyclerView);
         progressBar = view.findViewById(R.id.progressBar);
 
+    //    DividerItemDecoration itemDecor = new DividerItemDecoration(mRecyclerView.getContext(), VERTICAL);
+    //    mRecyclerView.addItemDecoration(itemDecor);
+
+        mRecyclerView.addItemDecoration(new SimpleDIviderItemDecoration(getContext()));
+
         return view;
     }
 
@@ -95,13 +103,11 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getChildrenCount() == 0){
-                    Log.i("no_children","no_children");
                     enableUseInteraction();
                 }
                 else{
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         FeedingIndiaEvent fievent = snapshot.getValue(FeedingIndiaEvent.class);
-                        Log.i("events_name",fievent.toString());
                         events.add(fievent);
                     }
                     sortList();

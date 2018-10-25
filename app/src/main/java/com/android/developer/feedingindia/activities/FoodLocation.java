@@ -44,7 +44,7 @@ public class FoodLocation extends AppCompatActivity implements OnMapReadyCallbac
     private static final float DEFAULT_ZOOM = 20;
     private boolean mMarkerAdded = false;
     private Button mLocationSubmitButton;
-    private String state = "",city = "",donorAddress = "",pinCode = "";
+    private String state,city,donorAddress,pinCode;
     private LatLng mChoosenLatLng;
 
 
@@ -54,15 +54,17 @@ public class FoodLocation extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_food_location);
         getLocationPermission();
         mLocationSubmitButton = findViewById(R.id.foodLocationBotton);
+        state = "";
+        city = "";
+        donorAddress = "";
+        pinCode = "";
     }
 
     private void moveCamera(LatLng latLng, float zoom) {
-        Log.d(TAG, "moving camera to latitude " + latLng.latitude + " longitude" + latLng.longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
     }
 
     private void getDeviceLocation() {
-        Log.d(TAG, "getting user location");
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         try {
             if (mLocationPermissionGranted) {
@@ -71,18 +73,16 @@ public class FoodLocation extends AppCompatActivity implements OnMapReadyCallbac
                     @Override
                     public void onComplete(@NonNull Task task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "location was found");
                             Location currentLocation = (Location) task.getResult();
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
                         } else {
-                            Log.d(TAG, "loction was not found");
-                            Toast.makeText(FoodLocation.this, "unable to get current location", Toast.LENGTH_SHORT).show();
+                            makeToast("unable to get current Location");
                         }
                     }
                 });
             }
         } catch (SecurityException e) {
-            Log.e(TAG, "Security exception" + e.getMessage());
+            makeToast("Error in finding Location");
         }
     }
 
@@ -105,7 +105,6 @@ public class FoodLocation extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void initMap() {
-        Toast.makeText(this, "Map is ready", Toast.LENGTH_SHORT).show();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.foodLocationMap);
         mapFragment.getMapAsync(this);
@@ -156,32 +155,22 @@ public class FoodLocation extends AppCompatActivity implements OnMapReadyCallbac
                 city = "";
                 state = "";
                 pinCode = "";
-                Log.i("Address",mListAddress.get(0).toString());
                 if(mListAddress.get(0).getThoroughfare() != null){
-                    Log.i("address",mListAddress.get(0).getThoroughfare().toString());
                     donorAddress += mListAddress.get(0).getThoroughfare().toString() + " ";
                 }
                 if(mListAddress.get(0).getSubAdminArea() != null){
-                    Log.i("city",mListAddress.get(0).getSubAdminArea().toString());
                     donorAddress += mListAddress.get(0).getSubAdminArea().toString() + " ";
                 }
                 if(mListAddress.get(0).getLocality() != null){
-                    Log.i("sub city",mListAddress.get(0).getLocality().toString());
                     city += mListAddress.get(0).getLocality().toString();
                 }
                 if(mListAddress.get(0).getAdminArea() != null) {
-                    Log.i("state", mListAddress.get(0).getAdminArea().toString());
                     state += mListAddress.get(0).getAdminArea().toString();
                 }
                 if(mListAddress.get(0).getPostalCode() != null){
-                    Log.i("postal code",mListAddress.get(0).getPostalCode().toString());
                     pinCode += mListAddress.get(0).getPostalCode().toString();
                 }
             }
-            Log.i("donor address",donorAddress);
-            Log.i("city",city);
-            Log.i("state",state);
-            Log.i("pincode",pinCode);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -203,5 +192,8 @@ public class FoodLocation extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+    }
+    private void makeToast(String s){
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 }

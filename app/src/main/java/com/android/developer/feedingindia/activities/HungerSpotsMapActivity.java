@@ -22,11 +22,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.android.developer.feedingindia.R;
 import com.android.developer.feedingindia.fragments.CollectAndDeliverFragment;
 import com.android.developer.feedingindia.fragments.FeedFragment;
 import com.android.developer.feedingindia.fragments.HomeFragment;
 import com.android.developer.feedingindia.pojos.DeliveryDetails;
+import com.android.developer.feedingindia.pojos.DonationDetails;
 import com.android.developer.feedingindia.pojos.HungerSpot;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -77,6 +80,8 @@ public class HungerSpotsMapActivity extends AppCompatActivity implements OnMapRe
     public static LatLng chosenHungerSpotLatlng;
     public LatLng chosenDoantionLatLng;
 
+    boolean cancelledDonation;
+
 
     private GoogleMap mMap;
 
@@ -90,20 +95,16 @@ public class HungerSpotsMapActivity extends AppCompatActivity implements OnMapRe
         progressBar = findViewById(R.id.progressBar);
         mLinearLayout = findViewById(R.id.hunger_spot_map_container);
         chosenDoantionLatLng = FeedFragment.chosenFoodLatLng;
-
+        cancelledDonation = false;
         mSharedPreferences = getSharedPreferences("com.android.developer.feedingindia", Context.MODE_PRIVATE);
-
-//
         Bundle extras = getIntent().getExtras();
         if(extras != null)
             chosenDonationId = extras.getString("DonationId"," ");
-        Log.i("donation id",chosenDonationId);
 
         onMarkerAddOk = true;
         onMapReadyOk = false;
         enableUserInteractionOk = false;
         onMarkerClicked = false;
-//
         hungerSpotCount = readHungerSpotCount = 0;
         doneReadingHungerSpots = false;
         hungerSpotQuery = FirebaseDatabase.getInstance().getReference().child("HungerSpots").orderByChild("status").equalTo("validated");
@@ -144,7 +145,7 @@ public class HungerSpotsMapActivity extends AppCompatActivity implements OnMapRe
 
             }
         };
-//
+
         SupportMapFragment mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.hungerSpotsMap);
         mMapFragment.getMapAsync(this);
         mConfirmButton = findViewById(R.id.confirmButton);
@@ -163,16 +164,11 @@ public class HungerSpotsMapActivity extends AppCompatActivity implements OnMapRe
                         hungerSpotAddress.put("address",address);
                     hungerSpotAddress.put("latitude",latitude+"");
                     hungerSpotAddress.put("longitude",longitude+"");
-                    Log.i("button clicked","data submittded");
                     if(chosenDonationId != null && chosenHungerSpotPushId != null)
-                        onClickAgreeToDeliver(chosenDonationId,chosenHungerSpotPushId);
+                        performCheck(chosenDonationId,chosenHungerSpotPushId);
                 }
             }
         });
-
-
-//
-
     }
 
     @Override
@@ -180,14 +176,12 @@ public class HungerSpotsMapActivity extends AppCompatActivity implements OnMapRe
         super.onStart();
         doneReadingHungerSpots = false;
         readHungerSpotCount = 0;
-//
         if(hungerSpots != null) {
             hungerSpots.clear();
         }if(hungerSpotAddress != null) {
             hungerSpotAddress.clear();
         }
         chosenHungerSpotPushId ="";
-//
     }
 
     @Override
@@ -232,23 +226,17 @@ public class HungerSpotsMapActivity extends AppCompatActivity implements OnMapRe
     {
         progressBar.setVisibility(View.GONE);
         mLinearLayout.setVisibility(View.VISIBLE);
-//
         progressBar.setVisibility(View.GONE);
         mLinearLayout.setVisibility(View.VISIBLE);
         enableUserInteractionOk = true;
         addMarker();
-//
-
     }
 
     private void onClickAgreeToDeliver(String chosenDonationSpot, String chosenHungerSpotPushId){
-
-        Handler mHandler = new Handler();
-
         DatabaseReference mDeliveryDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Deliveries").
-               child(FirebaseAuth.getInstance().getUid());
-       DeliveryDetails deliveryDetails = new DeliveryDetails(chosenDonationSpot,chosenHungerSpotPushId,FeedFragment.donorUid,FeedFragment.nameOfDonor,FeedFragment.phoneNumberOfDonor,"",FeedFragment.chosenDonationAddress,hungerSpotAddress,"pending",null,FeedFragment.donationImgUrl);
-       mDeliveryDatabaseReference.push().setValue(deliveryDetails);
+                child(FirebaseAuth.getInstance().getUid());
+        DeliveryDetails deliveryDetails = new DeliveryDetails(chosenDonationSpot,chosenHungerSpotPushId,FeedFragment.donorUid,FeedFragment.nameOfDonor,FeedFragment.phoneNumberOfDonor,"",FeedFragment.chosenDonationAddress,hungerSpotAddress,"pending",null,FeedFragment.donationImgUrl);
+        mDeliveryDatabaseReference.push().setValue(deliveryDetails);
         final DatabaseReference mDonationDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Donations").
                 child(FeedFragment.donorUid).child(FeedFragment.chosenDonationPushId);
 
@@ -272,28 +260,14 @@ public class HungerSpotsMapActivity extends AppCompatActivity implements OnMapRe
 
             }
         });
-            FeedFragment.chosenDonation = true;
-            HomeFragment.hungerSpotLocation = chosenHungerSpotLatlng;
-            HomeFragment.donorLocation = FeedFragment.chosenFoodLatLng;
+        HomeFragment.loadCollectAndDeliverFragment = true;
+        HomeFragment.hungerSpotLocation = chosenHungerSpotLatlng;
+        HomeFragment.donorLocation = FeedFragment.chosenFoodLatLng;
         Intent intent = new Intent();
         setResult(2,intent);
         finish();
 
     }
-
-
-//============================================================
-// Whenever a hungerSpot marker is clicked, clear hungerSpotAddressHashMap.Get the LatLng of the marker
-// Then do reverse geo-coding and use the code given below to set the hungerSpotAddress
-//============================================================
-//    hungerSpotAddress.put("city","");
-//    hungerSpotAddress.put("state","");
-//    hungerSpotAddress.put("pinCode","");
-//    hungerSpotAddress.put("address","");
-//    hungerSpotAddress.put("latitude","");
-//    hungerSpotAddress.put("longitude","");
-
-//Use ProgressBar wherever necessary
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
@@ -306,21 +280,19 @@ public class HungerSpotsMapActivity extends AppCompatActivity implements OnMapRe
         }
 
     }
-
-    // adding marker
     private void addMarker() {
         if (onMarkerAddOk) {
             if (enableUserInteractionOk && onMapReadyOk)
-                for (Map.Entry<String, HungerSpot> entry : hungerSpots.entrySet()) {
-                    LatLng latLng = new LatLng(entry.getValue().getLatitude(), entry.getValue().getLongitude());
-                    Marker mMarker = mMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-                    mMarker.setTag(entry.getKey());
-                    onMarkerAddOk = false;
+                if(hungerSpots!= null) {
+                    for (Map.Entry<String, HungerSpot> entry : hungerSpots.entrySet()) {
+                        LatLng latLng = new LatLng(entry.getValue().getLatitude(), entry.getValue().getLongitude());
+                        Marker mMarker = mMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                        mMarker.setTag(entry.getKey());
+                        onMarkerAddOk = false;
+                    }
                 }
         }
     }
-
-    // on map ready call back
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -336,8 +308,6 @@ public class HungerSpotsMapActivity extends AppCompatActivity implements OnMapRe
         onMapReadyOk = true;
         addMarker();
     }
-
-    // on marker clicked
     @Override
     public boolean onMarkerClick(Marker marker) {
         chosenHungerSpotLatlng = marker.getPosition();
@@ -345,8 +315,6 @@ public class HungerSpotsMapActivity extends AppCompatActivity implements OnMapRe
         LatLng latLng = marker.getPosition();
         chosenHungerSpotLatlng = latLng;
         chosenHungerSpotPushId = marker.getTag().toString();
-        Log.i("latitude", latLng.latitude + "");
-        Log.i("longitude", latLng.longitude + "");
         Geocoder mgeocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
         try {
             List<Address> mListAddress = mgeocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
@@ -357,30 +325,23 @@ public class HungerSpotsMapActivity extends AppCompatActivity implements OnMapRe
                 pinCode = "";
                 latitude = latLng.latitude;
                 longitude = latLng.longitude;
-                Log.i("Address", mListAddress.get(0).toString());
                 if (mListAddress.get(0).getFeatureName() != null) {
-                    Log.i("feature", mListAddress.get(0).getFeatureName().toString());
-                    address += mListAddress.get(0).getFeatureName().toString() + " ";
+                    address += mListAddress.get(0).getFeatureName()+ " ";
                 }
                 if (mListAddress.get(0).getThoroughfare() != null) {
-                    Log.i("address", mListAddress.get(0).getThoroughfare().toString());
-                    address += mListAddress.get(0).getThoroughfare().toString() + " ";
+                    address += mListAddress.get(0).getThoroughfare()+ " ";
                 }
                 if (mListAddress.get(0).getSubAdminArea() != null) {
-                    Log.i("city", mListAddress.get(0).getSubAdminArea().toString());
-                    address += mListAddress.get(0).getSubAdminArea().toString() + " ";
+                    address += mListAddress.get(0).getSubAdminArea()+ " ";
                 }
                 if (mListAddress.get(0).getLocality() != null) {
-                    Log.i("sub city", mListAddress.get(0).getLocality().toString());
-                    city += mListAddress.get(0).getLocality().toString();
+                    city += mListAddress.get(0).getLocality();
                 }
                 if (mListAddress.get(0).getAdminArea() != null) {
-                    Log.i("state", mListAddress.get(0).getAdminArea().toString());
-                    state += mListAddress.get(0).getAdminArea().toString();
+                    state += mListAddress.get(0).getAdminArea();
                 }
                 if (mListAddress.get(0).getPostalCode() != null) {
-                    Log.i("postal code", mListAddress.get(0).getPostalCode().toString());
-                    pinCode += mListAddress.get(0).getPostalCode().toString();
+                    pinCode += mListAddress.get(0).getPostalCode();
                 }
             }
 
@@ -394,5 +355,45 @@ public class HungerSpotsMapActivity extends AppCompatActivity implements OnMapRe
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
     }
-}
+    public void performCheck(String s,String ds){
 
+        DatabaseReference mDonationDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Donations").
+                child(FeedFragment.donorUid).child(FeedFragment.chosenDonationPushId);
+        mDonationDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String status = "";
+                DonationDetails donationDetails = dataSnapshot.getValue(DonationDetails.class);
+                status =  donationDetails.getStatus();
+                cancelledDonation = (status.equalsIgnoreCase("cancelled")
+                        ||status.equalsIgnoreCase("delivered")
+                        ||status.equalsIgnoreCase("picked"));
+                if(cancelledDonation == false) {
+                    onDonationOk();
+                }else{
+                    onCancelledDonation();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void onDonationOk(){
+        onClickAgreeToDeliver(chosenDonationId,chosenHungerSpotPushId);
+    }
+
+    private void onCancelledDonation(){
+        Toast.makeText(this, "The Donation Was Cancelled By the Donor", Toast.LENGTH_SHORT).show();
+        HomeFragment.loadCollectAndDeliverFragment = false;
+        Intent intent = new Intent();
+        setResult(100,intent);
+        finish();
+    }
+
+
+}

@@ -21,6 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.android.developer.feedingindia.R;
 import com.android.developer.feedingindia.pojos.DeliveryDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,7 +46,7 @@ public class HomeFragment extends Fragment {
     private SharedPreferences mSharedPreferences;
     private Handler mHandler;
     private FrameLayout fragContainer;
-    private boolean loadCollectAndDeliverFragment;
+    public static boolean loadCollectAndDeliverFragment;
     private static final int MENU_ITEM_ID_ONE =1;
     private static final int MENU_ITEM_ID_TWO =2;
     private static final int MENU_ITEM_ID_THREE =3;
@@ -176,24 +178,16 @@ public class HomeFragment extends Fragment {
                 if(dataSnapshot.getChildrenCount()!=0) {
 
                     loadCollectAndDeliverFragment = true;
-                    Log.i("collect_and_deliver",dataSnapshot.toString());
                     DeliveryDetails deliveryDetails;
                     for(DataSnapshot db : dataSnapshot.getChildren()){
 
-                         deliveryDetails = db.getValue(DeliveryDetails.class);
-
-                        Log.i("delivery",deliveryDetails.toString());
+                        deliveryDetails = db.getValue(DeliveryDetails.class);
                         HashMap<String,String> donorAddress = deliveryDetails.getDonorAddress();
                         HashMap<String,String> hungerSpotAddress = deliveryDetails.getHungerSpotAddress();
-                        Log.i("delivery Hunger Spot",donorAddress.get("latitude").toString()+" "+donorAddress.get("longitude"));
                         donorLocation = new LatLng(Double.parseDouble(donorAddress.get("latitude")),Double.parseDouble(donorAddress.get("longitude")));
                         hungerSpotLocation = new LatLng(Double.parseDouble(hungerSpotAddress.get("latitude")),Double.parseDouble(hungerSpotAddress.get("longitude")));
 
                     }
-
-
-                        //Log.i("delivery donor Spot",hungerSpotAddress.get("latitude").toString()+" "+hungerSpotAddress.get("longitude"));
-
                     if(mSharedPreferences.getString("userType","").equals("hungerhero")&&!CURRENT_TAG.equals("Donate"))
                         loadFragment(new CollectAndDeliverFragment());
                 }
@@ -203,7 +197,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(getContext(), "dataBaseError", Toast.LENGTH_SHORT).show();
             }
         });
 

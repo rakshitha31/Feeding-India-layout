@@ -2,8 +2,14 @@ package com.android.developer.feedingindia.fragments;
 
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,6 +33,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,7 +44,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class CollectAndDeliverFragment extends Fragment implements OnMapReadyCallback {
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
+public class CollectAndDeliverFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     private LatLng mFoodLatLng;
@@ -49,12 +60,12 @@ public class CollectAndDeliverFragment extends Fragment implements OnMapReadyCal
     private static final int LOCATION_PERMISSION_REQUEST = 1234;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private static final float DEFAULT_ZOOM = 15;
-    private static final String TAG = "CollDeliFragment";
+    private static final String TAG = "CollectDeliverFragment";
     private boolean enableUserInteractionOk = false;
     private boolean onMapReadyOk = false;
-    private LatLng hungerSpot,donationSpot;
-
-
+    private LatLng hungerSpot, donationSpot;
+    private Marker mHungerSpotMarker, mDonationSpotMarker;
+    private String address, city, state, pinCode;
 
 
     public CollectAndDeliverFragment() {
@@ -66,7 +77,7 @@ public class CollectAndDeliverFragment extends Fragment implements OnMapReadyCal
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mView =  inflater.inflate(R.layout.fragment_collect_and_deliver, container, false);
+        mView = inflater.inflate(R.layout.fragment_collect_and_deliver, container, false);
 
         return mView;
     }
@@ -91,30 +102,30 @@ public class CollectAndDeliverFragment extends Fragment implements OnMapReadyCal
                 return;
             }
             mMap.setMyLocationEnabled(true);
+            mMap.setOnMarkerClickListener(this);
 
             addMarker();
         }
     }
 
-    private void addMarker(){
+    private void addMarker() {
         hungerSpot = HomeFragment.hungerSpotLocation;
         donationSpot = HomeFragment.donorLocation;
-        if(hungerSpot != null)
-            mMap.addMarker(new MarkerOptions().position(hungerSpot));
-        Log.i("hungerspot","not found");
-        if(donationSpot != null) {
-            mMap.addMarker(new MarkerOptions().position(donationSpot).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-            Log.i("donorspot","not found");
+        if (hungerSpot != null) {
+            mHungerSpotMarker = mMap.addMarker(new MarkerOptions().position(hungerSpot).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+            mHungerSpotMarker.setTag("HungerSpot");
+        }
+        if (donationSpot != null) {
+            mDonationSpotMarker = mMap.addMarker(new MarkerOptions().position(donationSpot));
+            mDonationSpotMarker.setTag("DonationSpot");
         }
     }
 
     private void moveCamera(LatLng latLng, float zoom) {
-        Log.d(TAG, "moving camera to latitude " + latLng.latitude + " longitude" + latLng.longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
     }
 
     private void getDeviceLocation() {
-        Log.d(TAG, "getting user location");
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
         try {
             if (mLocationPermissionGranted) {
@@ -123,18 +134,15 @@ public class CollectAndDeliverFragment extends Fragment implements OnMapReadyCal
                     @Override
                     public void onComplete(@NonNull Task task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "location was found");
                             Location currentLocation = (Location) task.getResult();
-                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
+                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), 12);
                         } else {
-                            Log.d(TAG, "loction was not found");
                             Toast.makeText(getContext(), "unable to get current location", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }
         } catch (SecurityException e) {
-            Log.e(TAG, "Security exception" + e.getMessage());
         }
     }
 
@@ -157,7 +165,6 @@ public class CollectAndDeliverFragment extends Fragment implements OnMapReadyCal
     }
 
     private void initMap() {
-        Toast.makeText(getContext(), "Map is ready", Toast.LENGTH_SHORT).show();
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.collect_and_deliver_map);
         mapFragment.getMapAsync(this);
@@ -183,4 +190,119 @@ public class CollectAndDeliverFragment extends Fragment implements OnMapReadyCal
     public void onResume() {
         super.onResume();
     }
+
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+        String markerTag = marker.getTag().toString();
+        if (markerTag.equals("HungerSpot")) {
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
+            mBuilder.setTitle("Hungerspot Chosen");
+            Geocoder mgeocoder = new Geocoder(getContext(), Locale.getDefault());
+            try {
+                List<Address> mListAddress = mgeocoder.getFromLocation(marker.getPosition().latitude, marker.getPosition().longitude, 1);
+                if (mListAddress != null && mListAddress.size() > 0) {
+                    address = "";
+                    city = "";
+                    state = "";
+                    pinCode = "";
+                    if (mListAddress.get(0).getFeatureName() != null) {
+                        address += mListAddress.get(0).getFeatureName().toString() + " ";
+                    }
+                    if (mListAddress.get(0).getThoroughfare() != null) {
+                        address += mListAddress.get(0).getThoroughfare().toString() + " ";
+                    }
+                    if (mListAddress.get(0).getSubAdminArea() != null) {
+                        address += mListAddress.get(0).getSubAdminArea().toString() + " ";
+                    }
+                    if (mListAddress.get(0).getLocality() != null) {
+                        city += mListAddress.get(0).getLocality().toString();
+                    }
+                    if (mListAddress.get(0).getAdminArea() != null) {
+                        state += mListAddress.get(0).getAdminArea().toString();
+                    }
+                    if (mListAddress.get(0).getPostalCode() != null) {
+                        pinCode += mListAddress.get(0).getPostalCode().toString();
+                    }
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String mHungerSpotDetails = "HungerSpot Details :\n"+address +"\n"
+                    +"City :"+city+"\n"
+                    +"State :"+state+"\n"
+                    +"Pincode :"+pinCode+"\n";
+            mBuilder.setMessage(mHungerSpotDetails);
+            mBuilder.setPositiveButton("Navigate in Google Maps", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String latitude = String.valueOf(marker.getPosition().latitude);
+                    String longitude = String.valueOf(marker.getPosition().longitude);
+                    Uri gmmIntentUri = Uri.parse("google.navigation:q="+latitude+","+longitude);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    startActivity(mapIntent);
+                }
+            });
+            AlertDialog alertDialog = mBuilder.create();
+            alertDialog.show();
+        }
+        else if(markerTag.equals("DonationSpot")){
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
+            mBuilder.setTitle("DonationSpot Chosen");
+            Geocoder mgeocoder = new Geocoder(getContext(), Locale.getDefault());
+            try {
+                List<Address> mListAddress = mgeocoder.getFromLocation(marker.getPosition().latitude, marker.getPosition().longitude, 1);
+                if (mListAddress != null && mListAddress.size() > 0) {
+                    address = "";
+                    city = "";
+                    state = "";
+                    pinCode = "";
+                    if (mListAddress.get(0).getFeatureName() != null) {
+                        address += mListAddress.get(0).getFeatureName().toString() + " ";
+                    }
+                    if (mListAddress.get(0).getThoroughfare() != null) {
+                        address += mListAddress.get(0).getThoroughfare().toString() + " ";
+                    }
+                    if (mListAddress.get(0).getSubAdminArea() != null) {
+                        address += mListAddress.get(0).getSubAdminArea().toString() + " ";
+                    }
+                    if (mListAddress.get(0).getLocality() != null) {
+                        city += mListAddress.get(0).getLocality().toString();
+                    }
+                    if (mListAddress.get(0).getAdminArea() != null) {
+                        state += mListAddress.get(0).getAdminArea().toString();
+                    }
+                    if (mListAddress.get(0).getPostalCode() != null) {
+                        pinCode += mListAddress.get(0).getPostalCode().toString();
+                    }
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String mHungerSpotDetails = "DonationSpot Details :\n"+address +"\n"
+                    +"City :"+city+"\n"
+                    +"State :"+state+"\n"
+                    +"Pincode :"+pinCode+"\n";
+            mBuilder.setMessage(mHungerSpotDetails);
+            mBuilder.setPositiveButton("Navigate in Google Maps", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String latitude = String.valueOf(marker.getPosition().latitude);
+                    String longitude = String.valueOf(marker.getPosition().longitude);
+                    Uri gmmIntentUri = Uri.parse("google.navigation:q="+latitude+","+longitude);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    startActivity(mapIntent);
+                }
+            });
+            AlertDialog alertDialog = mBuilder.create();
+            alertDialog.show();
+        }
+        return false;
+    }
+
 }
+
+

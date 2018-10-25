@@ -4,6 +4,7 @@ public class HungerSpot {
 
     private String addedBy;
     private String status;
+    private String userRole,addedOn;
     private double latitude;
     private double longitude;
 
@@ -34,4 +35,19 @@ public class HungerSpot {
         return longitude;
     }
 
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+
+    public String getAddedOn() {
+        return addedOn;
+    }
+
+    public void setAddedOn(String addedOn) {
+        this.addedOn = addedOn;
+    }
 }

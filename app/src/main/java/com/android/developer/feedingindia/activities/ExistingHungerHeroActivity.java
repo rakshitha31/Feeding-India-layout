@@ -57,115 +57,115 @@ public class ExistingHungerHeroActivity extends AppCompatActivity {
         mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(mAdapter);
 
-     mProgressDialog = new ProgressDialog(this);
-     mProgressDialog.setCancelable(false);
-     mProgressDialog.setMessage("Please wait...\nSigning Up");
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setMessage("Please wait...\nSigning Up");
 
-     mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Temporary");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Temporary");
 
-     mChildEventListener = new ChildEventListener() {
-         @Override
-         public void onChildAdded(@NonNull final DataSnapshot dataSnapshot, @Nullable String s) {
+        mChildEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull final DataSnapshot dataSnapshot, @Nullable String s) {
 
-             HashMap<String,Object> temp = (HashMap)dataSnapshot.getValue();
+                HashMap<String,Object> temp = (HashMap)dataSnapshot.getValue();
 
-             if(temp.get("email").equals(userEmail)){
+                if(temp.get("email").equals(userEmail)){
 
-                 mDatabaseReference.removeEventListener(mChildEventListener);
+                    mDatabaseReference.removeEventListener(mChildEventListener);
 
-                 final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                    final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-                 temp.put("city",userCity);
-                 temp.put("requestedToBeAdmin",false);
-                 temp.put("userType","hungerhero");
-                 temp.put("previousRole","hungerhero");
-                 temp.put("emailVerified",true);
-                 ObjectMapper mObjectMapper = new ObjectMapper();
-                 final HungerHero hungerHero = mObjectMapper.convertValue(temp, HungerHero.class);
-                 mAuth.createUserWithEmailAndPassword(userEmail,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                     @Override
-                     public void onComplete(@NonNull Task<AuthResult> task) {
+                    temp.put("city",userCity);
+                    temp.put("requestedToBeAdmin",false);
+                    temp.put("userType","hungerhero");
+                    temp.put("previousRole","hungerhero");
+                    temp.put("emailVerified",true);
+                    ObjectMapper mObjectMapper = new ObjectMapper();
+                    final HungerHero hungerHero = mObjectMapper.convertValue(temp, HungerHero.class);
+                    mAuth.createUserWithEmailAndPassword(userEmail,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                         if(task.isSuccessful()){
+                            if(task.isSuccessful()){
 
-                             FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid()).setValue(hungerHero).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                 @Override
-                                 public void onComplete(@NonNull Task<Void> task) {
+                                FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid()).setValue(hungerHero).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
 
-                                     if(task.isSuccessful()){
+                                        if(task.isSuccessful()){
 
-                                         mAuth.signOut();
-                                         makeToast("Welcome to Feeding India!\nAccount Created\nYou can sign in with your email and password");
-                                         FirebaseDatabase.getInstance().getReference().child("Temporary").child(dataSnapshot.getKey()).removeValue();
+                                            mAuth.signOut();
+                                            makeToast("Welcome to Feeding India!\nAccount Created\nYou can sign in with your email and password");
+                                            FirebaseDatabase.getInstance().getReference().child("Temporary").child(dataSnapshot.getKey()).removeValue();
 
-                                         CountDownTimer countDownTimer = new CountDownTimer(1000,1000) {
-                                             @Override
-                                             public void onTick(long l) {
+                                            new CountDownTimer(1000,1000) {
+                                                @Override
+                                                public void onTick(long l) {
 
-                                             }
+                                                }
 
-                                             @Override
-                                             public void onFinish() {
+                                                @Override
+                                                public void onFinish() {
 
-                                                 mProgressDialog.cancel();
-                                                 moveTaskToBack(true);
-                                                 android.os.Process.killProcess(android.os.Process.myPid());
-                                                 System.exit(1);
+                                                    mProgressDialog.cancel();
+                                                    moveTaskToBack(true);
+                                                    android.os.Process.killProcess(android.os.Process.myPid());
+                                                    System.exit(1);
 
-                                             }
-                                         }.start();
+                                                }
+                                            }.start();
 
 
-                                     }
-                                     else{
-                                         mProgressDialog.cancel();
-                                         makeToast(task.getException().getMessage());
-                                         mAuth.getCurrentUser().delete();
-                                     }
+                                        }
+                                        else{
+                                            mProgressDialog.cancel();
+                                            makeToast(task.getException().getMessage());
+                                            mAuth.getCurrentUser().delete();
+                                        }
 
-                                 }
-                             });
-                         }
-                         else{
-                             mProgressDialog.cancel();
-                             makeToast(task.getException().getMessage());
-                         }
-                     }
-                 });
+                                    }
+                                });
+                            }
+                            else{
+                                mProgressDialog.cancel();
+                                makeToast(task.getException().getMessage());
+                            }
+                        }
+                    });
 
-             }
-             else{
+                }
+                else{
 
-                 readCount++;
-                 if(userCount==readCount){
-                     mProgressDialog.cancel();
-                     makeToast("Sorry!The email id does not match any existing hungerheroes");
-                 }
+                    readCount++;
+                    if(userCount==readCount){
+                        mProgressDialog.cancel();
+                        makeToast("Sorry!The email id does not match any existing hungerheroes");
+                    }
 
-             }
+                }
 
-         }
+            }
 
-         @Override
-         public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-         }
+            }
 
-         @Override
-         public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
-         }
+            }
 
-         @Override
-         public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-         }
+            }
 
-         @Override
-         public void onCancelled(@NonNull DatabaseError databaseError) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-         }
-     };
+            }
+        };
 
     }
 

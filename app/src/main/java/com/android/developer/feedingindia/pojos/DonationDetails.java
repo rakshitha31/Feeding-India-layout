@@ -8,7 +8,7 @@ public class DonationDetails {
     private boolean hasContainer,canDonate;
     private HashMap<String,Object> donorAddress;
     private String donationImageUrl,deliveryImgUrl;
-    private String foodType,deliveredOn;
+    private String foodType,deliveredOn,shelfLife,noPeopleCanBeServed;
     private String donationUserId;
     private Long timeStamp = 0L;
     private String donationId = "";
@@ -119,5 +119,21 @@ public class DonationDetails {
 
     public void setDonationId(String donationId) {
         this.donationId = donationId;
+    }
+
+    public String getShelfLife() {
+        return shelfLife;
+    }
+
+    public void setShelfLife(String shelfLife) {
+        this.shelfLife = shelfLife;
+    }
+
+    public String getNoPeopleCanBeServed() {
+        return noPeopleCanBeServed;
+    }
+
+    public void setNoPeopleCanBeServed(String noPeopleCanBeServed) {
+        this.noPeopleCanBeServed = noPeopleCanBeServed;
     }
 }

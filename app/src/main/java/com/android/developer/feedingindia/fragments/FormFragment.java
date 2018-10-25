@@ -32,7 +32,7 @@ import java.util.Collections;
 public class FormFragment extends Fragment implements  View.OnClickListener,CompoundButton.OnCheckedChangeListener{
 
     private EditText educationalBackgroundEditText,currentlyPartOfEditText,localityEditText,
-                     pinCodeEditText,reasonForJoiningEditText,aboutMeEditText;
+            pinCodeEditText,reasonForJoiningEditText,aboutMeEditText;
     private String responsibility;
     private String affordableTime;
     private String state;
@@ -165,8 +165,8 @@ public class FormFragment extends Fragment implements  View.OnClickListener,Comp
         ArrayList<String> aboutMeList = new ArrayList<>();
 
         if(educationalBackground.isEmpty() || currentlyPartOf.isEmpty()||
-           locality.isEmpty() || pinCode.isEmpty() || reasonForJoining.isEmpty() || !(aboutMe.length>0)
-            || !(introducedToFIThrough.size()>0))
+                locality.isEmpty() || pinCode.isEmpty() || reasonForJoining.isEmpty() || !(aboutMe.length>0)
+                || !(introducedToFIThrough.size()>0))
             makeToast("Fields cannot be empty!");
 
         else {
@@ -197,19 +197,19 @@ public class FormFragment extends Fragment implements  View.OnClickListener,Comp
         switch (view.getId()){
 
             case R.id.textView1:
-                openBrowser("https://www.google.com");
+                openBrowser("https://www.feedingindia.org/get-involved");
                 break;
 
             case R.id.textView2:
-                openBrowser("https://www.facebook.com");
+                openBrowser("https://www.feedingindia.org/the-challenge");
                 break;
 
             case R.id.textView3:
-                openBrowser("https://www.google.com");
+                openBrowser("https://www.facebook.com/feedingindia");
                 break;
 
             case R.id.textView4:
-                openBrowser("https://www.facebook.com");
+                openBrowser("https://www.feedingindia.org");
                 break;
 
             case R.id.radioButton1 :

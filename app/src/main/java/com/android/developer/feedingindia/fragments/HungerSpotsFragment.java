@@ -36,7 +36,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class HungerSpotsFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapLongClickListener {
 
@@ -54,7 +57,7 @@ public class HungerSpotsFragment extends Fragment implements OnMapReadyCallback,
     private LatLng mChoosenLatLng;
     private Button mSubmitButton;
     private SharedPreferences mSharedPreferences;
-    private String role;
+
 
     public HungerSpotsFragment() {
         // Required empty public constructor
@@ -85,23 +88,22 @@ public class HungerSpotsFragment extends Fragment implements OnMapReadyCallback,
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("HungerSpots");
         hungerSpotQuery = FirebaseDatabase.getInstance().getReference().
-                        child("HungerSpots").orderByChild("addedBy").equalTo(userName);
+                child("HungerSpots").orderByChild("addedBy").equalTo(userName);
         mSharedPreferences = getActivity().getSharedPreferences("com.android.developer.feedingindia", Context.MODE_PRIVATE);
 
-        String role = mSharedPreferences.getString("userType","");
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                    HungerSpot hungerSpot = dataSnapshot.getValue(HungerSpot.class);
-                    Location location = new Location(LocationManager.GPS_PROVIDER);
-                    location.setLatitude(hungerSpot.getLatitude());
-                    location.setLongitude(hungerSpot.getLongitude());
-                    mHungerSpots.add(location);
-                    readHungerSpots++;
+                HungerSpot hungerSpot = dataSnapshot.getValue(HungerSpot.class);
+                Location location = new Location(LocationManager.GPS_PROVIDER);
+                location.setLatitude(hungerSpot.getLatitude());
+                location.setLongitude(hungerSpot.getLongitude());
+                mHungerSpots.add(location);
+                readHungerSpots++;
 
                 if(readHungerSpots == hungerSpotCount)
-                enableUserInteraction();
+                    enableUserInteraction();
             }
 
             @Override
@@ -186,15 +188,20 @@ public class HungerSpotsFragment extends Fragment implements OnMapReadyCallback,
 
     private void addHungerSpot(double latitude, double longitude)
     {
-        if(role == "admin" || role == "superadmin"){
-            HungerSpot hungerSpot = new HungerSpot(userName,"validated",latitude,longitude);
-            mDatabaseReference.push().setValue(hungerSpot);
-            makeToast("Success! HungerSpot added");
+        String role = mSharedPreferences.getString("userType","");
+        HungerSpot hungerSpot;
+        if(role.equals("admin") || role.equals("superadmin")){
+            hungerSpot = new HungerSpot(userName,"validated",latitude,longitude);
         }else {
-            HungerSpot hungerSpot = new HungerSpot(userName, "pending", latitude, longitude);
-            mDatabaseReference.push().setValue(hungerSpot);
-            makeToast("Success! HungerSpot added");
+            hungerSpot = new HungerSpot(userName, "pending", latitude, longitude);
+            hungerSpot.setUserRole(mSharedPreferences.getString("userType",""));
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+            String addedOn = formatter.format(date);
+            hungerSpot.setAddedOn(addedOn);
         }
+        mDatabaseReference.push().setValue(hungerSpot);
+        makeToast("Success! HungerSpot added");
     }
 
     private void makeToast(String message){

@@ -131,7 +131,6 @@ public class AddEventFragment extends Fragment {
                     if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
                         imageUrl = downloadUri.toString();
-                        Log.i("download url", downloadUri.toString());
                         Toast.makeText(getContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
                         addToDatabase();
                     } else {
@@ -168,6 +167,9 @@ public class AddEventFragment extends Fragment {
 
     public void MakeToast(String infoString){
         Toast.makeText(getContext(), ""+infoString, Toast.LENGTH_SHORT).show();
+        mEventName.setText("");
+        mEventDescription.setText("");
+        mEventImage.setImageResource(R.drawable.add_image_click);
     }
 
 

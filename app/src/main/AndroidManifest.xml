@@ -5,10 +5,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- maps permissions -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -26,9 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.SignInActivity"
-            android:configChanges="screenSize|orientation" />
+        <activity android:name=".activities.SignInActivity"
+                  android:configChanges="screenSize|orientation">
+        </activity>
         <activity
             android:name=".activities.DonorSignUpActivity"
             android:configChanges="screenSize|orientation" />
@@ -52,15 +51,21 @@
             android:configChanges="screenSize|orientation" />
         <activity
             android:name=".activities.FoodLocation"
-            android:configChanges="screenSize|orientation"/>
+            android:configChanges="screenSize|orientation" />
         <!-- google maps api key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyByQbL7JiZeUoSVx6-rtXCS_eWVfb-TaVI"/>
+            android:value="AIzaSyByQbL7JiZeUoSVx6-rtXCS_eWVfb-TaVI" />
         <!-- google play services version number -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".activities.EnlargeImageViewActivity">
+            android:name=".activities.SignInActivity"
+            android:configChanges="screenSize|orientation">
+
+        </activity>
     </application>
 
 </manifest>

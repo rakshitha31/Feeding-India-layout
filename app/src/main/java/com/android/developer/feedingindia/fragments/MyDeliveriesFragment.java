@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.android.developer.feedingindia.R;
+import com.android.developer.feedingindia.activities.EnlargeImageViewActivity;
 import com.android.developer.feedingindia.adapters.DeliveriesAdapter;
 import com.android.developer.feedingindia.pojos.DeliveryDetails;
 import com.google.android.gms.tasks.Continuation;
@@ -179,9 +180,6 @@ public class MyDeliveriesFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-
-        Log.i("Hello", "onPause: ");
-
         if(mChildEventListener!=null)
             deliveryDatabaseReference.removeEventListener(mChildEventListener);
 
@@ -236,6 +234,8 @@ public class MyDeliveriesFragment extends Fragment {
 
                                     FirebaseDatabase.getInstance().getReference().child("Donations").child(mDeliveryDetails.getDonationUserId()).child(mDeliveryDetails.getDonationId()).child("status").setValue("delivered");
                                     FirebaseDatabase.getInstance().getReference().child("Donations").child(mDeliveryDetails.getDonationUserId()).child(mDeliveryDetails.getDonationId()).child("deliveredOn").setValue(deliveredOn);
+                                    HomeFragment.donorLocation = null;
+                                    HomeFragment.hungerSpotLocation = null;
 
                                     Uri uri = mImageUriList.get(position);
 
@@ -253,7 +253,9 @@ public class MyDeliveriesFragment extends Fragment {
                                 public void onClick(DialogInterface dialog, int which) {
 
                                     deliveryDatabaseReference.child(donationIdToPushId.get(deliveriesList.get(position).getDonationId())).removeValue();
-                                   FirebaseDatabase.getInstance().getReference().child("Donations").child(deliveriesList.get(position).getDonationUserId()).child(deliveriesList.get(position).getDonationId()).child("status").setValue("pending");
+                                    FirebaseDatabase.getInstance().getReference().child("Donations").child(deliveriesList.get(position).getDonationUserId()).child(deliveriesList.get(position).getDonationId()).child("status").setValue("pending");
+                                    HomeFragment.donorLocation = null;
+                                    HomeFragment.hungerSpotLocation = null;
                                     deliveriesList.remove(position);
                                     mAdapter.notifyItemRemoved(position);
 
@@ -273,11 +275,11 @@ public class MyDeliveriesFragment extends Fragment {
 
                 if(status.equals("pending")) {
 
+                    mImageView = view.findViewById(R.id.delivery_image);
                     Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                     gallery.setType("image/*");
                     startActivityForResult(gallery, position);
-
-                    mImageView = view.findViewById(R.id.delivery_image);
+                    mAdapter.notifyItemChanged(position);
 
                 }
 
@@ -285,8 +287,13 @@ public class MyDeliveriesFragment extends Fragment {
 
             @Override
             public void onClickImage(ImageView view, int position) {
-
-                //Intent to Enlarged ImageView Activity
+                String passingImageUrl = deliveriesList.get(position).getDeliveryImgUrl();
+                if(passingImageUrl!=null) {
+                    Intent intent = new Intent(getContext(),EnlargeImageViewActivity.class);
+                    intent.putExtra("ImageUrl", passingImageUrl);
+                    intent.putExtra("type","delivery");
+                    startActivity(intent);
+                }
 
             }
         });
@@ -352,6 +359,7 @@ public class MyDeliveriesFragment extends Fragment {
                 mImageView.setImageURI(imageUri);
 
             mImageUriList.put(requestCode,imageUri);
+            mAdapter.notifyItemChanged(requestCode);
         }
 
     }

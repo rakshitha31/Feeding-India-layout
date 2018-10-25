@@ -128,13 +128,13 @@ public class VerificationActivity extends AppCompatActivity {
         super.onDestroy();
 
         if(mCountDownTimer!=null)
-        mCountDownTimer.cancel();
+            mCountDownTimer.cancel();
     }
 
     private void startTimer(long initialMilliSecs){
 
         if(mCountDownTimer!=null)
-        mCountDownTimer.cancel();
+            mCountDownTimer.cancel();
 
         mCountDownTimer = getCountDownTimer(initialMilliSecs);
         mCountDownTimer.start();
@@ -186,7 +186,6 @@ public class VerificationActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
 
                                 if(task.isSuccessful()) {
-                                    Log.i(TAG, "onComplete: " + "wo1");
                                     signUpWithEmail();
                                 }
                                 else
@@ -211,7 +210,7 @@ public class VerificationActivity extends AppCompatActivity {
 
                         verificationCodeEditText.setText("");
                         startTimer(left);
-                        }
+                    }
                 }
             });
         }
@@ -233,11 +232,11 @@ public class VerificationActivity extends AppCompatActivity {
                     if(userType.equals("hungerhero")){
                         //User wants to be a hungerhero
                         HungerHero hungerHero = new HungerHero(userName,userDoB,userEmail,userMobileNumber,
-                         "hungerhero",HungerHeroSignUpActivity.educationalBackground,HungerHeroSignUpActivity.state,
-                          userCity,HungerHeroSignUpActivity.locality,HungerHeroSignUpActivity.pinCode,
-                          HungerHeroSignUpActivity.reasonForJoining,HungerHeroSignUpActivity.affordableTime,
-                          HungerHeroSignUpActivity.responsibility,HungerHeroSignUpActivity.currentlyPartOf,
-                          HungerHeroSignUpActivity.introducedToFIThrough,HungerHeroSignUpActivity.aboutMeList,false,"hungerhero",false);
+                                "hungerhero",HungerHeroSignUpActivity.educationalBackground,HungerHeroSignUpActivity.state,
+                                userCity,HungerHeroSignUpActivity.locality,HungerHeroSignUpActivity.pinCode,
+                                HungerHeroSignUpActivity.reasonForJoining,HungerHeroSignUpActivity.affordableTime,
+                                HungerHeroSignUpActivity.responsibility,HungerHeroSignUpActivity.currentlyPartOf,
+                                HungerHeroSignUpActivity.introducedToFIThrough,HungerHeroSignUpActivity.aboutMeList,false,"hungerhero",false);
 
                         mDatabaseReference.child(mAuth.getCurrentUser().getUid()).setValue(hungerHero).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -300,7 +299,8 @@ public class VerificationActivity extends AppCompatActivity {
 
         if(mAuth.getCurrentUser()!=null) {
             mAuth.signOut();
-            mProgressDialog.cancel();
+            if(mProgressDialog.isShowing())
+                mProgressDialog.cancel();
             makeToast("Welcome to Feeding India!");
             finish();
         }

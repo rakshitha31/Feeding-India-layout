@@ -46,6 +46,7 @@ public class ValidateFragment extends Fragment implements OnMapReadyCallback,Goo
     private long hungerSpotCount,readHungerSpots = 0;
 
     private GoogleMap mGoogleMap;
+    String hungerSpotDetails = "";
 
     public ValidateFragment() {
         // Required empty public constructor
@@ -73,22 +74,22 @@ public class ValidateFragment extends Fragment implements OnMapReadyCallback,Goo
         readHungerSpots = 0;
 
         hungerSpotQuery = FirebaseDatabase.getInstance().getReference().child("HungerSpots").
-                          orderByChild("status").equalTo("pending");
+                orderByChild("status").equalTo("pending");
 
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 HungerSpot hungerSpot = dataSnapshot.getValue(HungerSpot.class);
-                    Location location = new Location(LocationManager.GPS_PROVIDER);
-                    location.setLatitude(hungerSpot.getLatitude());
-                    location.setLongitude(hungerSpot.getLongitude());
-                    mHungerSpots.put(dataSnapshot.getKey(),location);
+                Location location = new Location(LocationManager.GPS_PROVIDER);
+                location.setLatitude(hungerSpot.getLatitude());
+                location.setLongitude(hungerSpot.getLongitude());
+                mHungerSpots.put(dataSnapshot.getKey(),location);
 
                 readHungerSpots++;
 
                 if(readHungerSpots == hungerSpotCount)
-                enableUserInteraction();
+                    enableUserInteraction();
             }
 
             @Override
@@ -209,11 +210,15 @@ public class ValidateFragment extends Fragment implements OnMapReadyCallback,Goo
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 HashMap<String,Object> post =(HashMap<String,Object>) dataSnapshot.getValue();
-                if(status.equals("validated"))
-                    post.put("status","validated");
+                if(status.equals("validated")) {
+                    post.put("status", "validated");
+                    mDatabaseReference.updateChildren(post);
+                }
                 else
-                    post.put("status","invalid");
-                mDatabaseReference.updateChildren(post);
+                {
+                    dataSnapshot.getRef().removeValue();
+                }
+
             }
 
             @Override
@@ -256,8 +261,30 @@ public class ValidateFragment extends Fragment implements OnMapReadyCallback,Goo
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
+
+        DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("HungerSpots").
+                child(marker.getTag().toString());
+        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String details = "";
+                if(dataSnapshot.getChildrenCount() > 0){
+                    HungerSpot hungerSpot = dataSnapshot.getValue(HungerSpot.class);
+                    details += "added by : "+hungerSpot.getAddedBy()+"\n";
+                    details += "role of the person : "+hungerSpot.getUserRole()+"\n";
+                    details += "added On : "+hungerSpot.getAddedOn()+"\n";
+                }
+                hungerSpotDetails = details;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-        alertDialogBuilder.setMessage("Do you want to Mark this as Hunger Spot ?");
+        alertDialogBuilder.setTitle("Do you want to validate this place as hunger spot ?");
+        alertDialogBuilder.setMessage(hungerSpotDetails);
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

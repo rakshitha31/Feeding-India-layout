@@ -2,7 +2,6 @@ package com.android.developer.feedingindia.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -149,9 +148,6 @@ public class DeliveriesAdapter extends RecyclerView.Adapter<DeliveriesAdapter.Vi
             deliveredOnString += "Nil";
 
         viewHolder.deliveredOn.setText(deliveredOnString);
-
-        Log.i("Hello", "onBindViewHolder: " + deliveries.get(i).getDonationImgUrl());
-
         if(deliveries.get(i).getDonationImgUrl() != null)
             Picasso.get().load(deliveries.get(i).getDonationImgUrl()).into(viewHolder.donationImage);
         else
@@ -159,11 +155,12 @@ public class DeliveriesAdapter extends RecyclerView.Adapter<DeliveriesAdapter.Vi
 
         if(deliveries.get(i).getDeliveryImgUrl() != null)
             Picasso.get().load(deliveries.get(i).getDeliveryImgUrl()).into(viewHolder.deliveryImage);
-        else
-        if(mDeliveryDetails.getStatus().equals("delivered"))
-            viewHolder.deliveryImage.setImageResource(R.drawable.no_image);
-        else
-            viewHolder.deliveryImage.setImageResource(R.drawable.add_image);
+        else {
+            if (mDeliveryDetails.getStatus().equals("delivered"))
+                viewHolder.deliveryImage.setImageResource(R.drawable.no_image);
+            else
+                viewHolder.deliveryImage.setImageResource(R.drawable.add_image_click);
+        }
 
     }
 

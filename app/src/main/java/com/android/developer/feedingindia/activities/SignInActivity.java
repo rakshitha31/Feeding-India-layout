@@ -1,13 +1,18 @@
 package com.android.developer.feedingindia.activities;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,12 +51,15 @@ public class SignInActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FirebaseUser mFireBaseUser;
     private ImageButton facebookIcon,twitterIcon,instagramIcon;
-    
+    private static final String FINE_LOCATION = android.Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final String COARSE_LOCATION =  android.Manifest.permission.ACCESS_COARSE_LOCATION;
+    private boolean mLocationPermissionOk;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE =  1234;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
+        mLocationPermissionOk = false;
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView);
@@ -59,8 +67,13 @@ public class SignInActivity extends AppCompatActivity {
         rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox);
         facebookIcon = findViewById(R.id.facebook_icon);
         twitterIcon = findViewById(R.id.twitter_icon);
-        instagramIcon = findViewById(R.id.instagram_icon);
+        instagramIcon=findViewById(R.id.instagram);
 
+
+        getLocationPermission();
+        if(!mLocationPermissionOk){
+            getLocationPermission();
+        }
         mAuth = FirebaseAuth.getInstance();
 
         mSharedPreferences = this.getSharedPreferences(getPackageName(), MODE_PRIVATE);
@@ -86,20 +99,20 @@ public class SignInActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                         if(mAuth.getCurrentUser()!=null)
-                        mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
+                            mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
 
-                                mAuth.signOut();
+                                    mAuth.signOut();
 
-                                if(task.isSuccessful())
-                                    makeToast("Mail sent!");
-                                else
-                                    makeToast(task.getException().getMessage());
+                                    if(task.isSuccessful())
+                                        makeToast("Mail sent!");
+                                    else
+                                        makeToast(task.getException().getMessage());
 
-                            }
+                                }
 
-                        });
+                            });
 
                     }
                 })
@@ -114,10 +127,10 @@ public class SignInActivity extends AppCompatActivity {
 
                 .setOnDismissListener(new DialogInterface.OnDismissListener() {
 
-                        @Override
+                    @Override
                     public void onDismiss(DialogInterface dialogInterface) {
 
-                            mAuth.signOut();
+                        mAuth.signOut();
 
                     }
                 }).setCancelable(false).create();
@@ -152,7 +165,6 @@ public class SignInActivity extends AppCompatActivity {
                                 mSharedPreferences.edit().putString("mobileNumber",userData.get("mobileNumber").toString()).apply();
                                 mSharedPreferences.edit().putString("name",userData.get("name").toString()).apply();
                                 mSharedPreferences.edit().putString("city",userData.get("city").toString()).apply();
-                                Log.i("Hello", "onDataChange: " + userType + mAuth.getCurrentUser().getEmail());
                                 if(userType.equals("hungerhero"))
                                     mSharedPreferences.edit().putBoolean("emailVerified",(boolean)userData.get("emailVerified")).apply();
                                 if(userType.equals("hungerhero")) {
@@ -161,7 +173,7 @@ public class SignInActivity extends AppCompatActivity {
                                 else
                                 {
                                     if(mProgressDialog.isShowing())
-                                    mProgressDialog.cancel();
+                                        mProgressDialog.cancel();
                                     mIntent = new Intent(SignInActivity.this,MainActivity.class);
                                     startActivity(mIntent);
                                 }
@@ -181,7 +193,6 @@ public class SignInActivity extends AppCompatActivity {
                     }
                     else {
 
-                        Log.i("Hello", "onAuthStateChanged: ");
                         String userType = mSharedPreferences.getString("userType","");
                         if(userType.equals("hungerhero")) {
                             checkIfEmailIsVerified();
@@ -208,18 +219,17 @@ public class SignInActivity extends AppCompatActivity {
             mProgressDialog.cancel();
 
         if(mFireBaseUser!=null)
-        if (mFireBaseUser.isEmailVerified() || mSharedPreferences.getBoolean("emailVerified",false)) {
-            //Check if the email is verified
-            Log.i("Hello", "checkIfEmailIsVerified: ");
-            mIntent = new Intent(SignInActivity.this,MainActivity.class);
-            startActivity(mIntent);
-        }
+            if (mFireBaseUser.isEmailVerified() || mSharedPreferences.getBoolean("emailVerified",false)) {
+                //Check if the email is verified
+                mIntent = new Intent(SignInActivity.this,MainActivity.class);
+                startActivity(mIntent);
+            }
 
-        else {
-            mAlertDialog.show();
-            makeToast("Email not verified yet!");
+            else {
+                mAlertDialog.show();
+                makeToast("Email not verified yet!");
 
-        }
+            }
 
     }
 
@@ -283,7 +293,7 @@ public class SignInActivity extends AppCompatActivity {
         instagramIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/feedingindia/"));
+                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/feedingindia/"));
                 startActivity(intent);
             }
         });
@@ -297,7 +307,6 @@ public class SignInActivity extends AppCompatActivity {
         //Detaching listener when the activity is no longer visible
 
         if(mAuthStateListener!=null) {
-            Log.i("Hello", "onPause: ");
             mAuth.removeAuthStateListener(mAuthStateListener);
         }
 
@@ -373,4 +382,33 @@ public class SignInActivity extends AppCompatActivity {
         Toast.makeText(SignInActivity.this,message,Toast.LENGTH_SHORT).show();
     }
 
+
+    public void getLocationPermission(){
+        String[] permissions = { android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION};
+        if(ContextCompat.checkSelfPermission(this.getApplicationContext(),FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            if(ContextCompat.checkSelfPermission(this.getApplicationContext(),COARSE_LOCATION)== PackageManager.PERMISSION_GRANTED){}
+            mLocationPermissionOk = true;
+        }else {
+            ActivityCompat.requestPermissions(this,permissions,LOCATION_PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        mLocationPermissionOk = false;
+        switch (requestCode){
+            case LOCATION_PERMISSION_REQUEST_CODE:{
+                if(grantResults.length > 0) {
+                    for (int i = 0; i < grantResults.length; i++) {
+                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
+                            mLocationPermissionOk = false;
+                            return;
+                        }
+                    }
+                    mLocationPermissionOk = true;
+                }
+            }
+        }
+    }
 }
+

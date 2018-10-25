@@ -45,7 +45,7 @@ public class ContactUsFragment extends Fragment {
 
         userCount = readUserCount = 0;
 
-       childEventListener = new ChildEventListener() {
+        childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
@@ -106,6 +106,7 @@ public class ContactUsFragment extends Fragment {
     @Override
     public void onResume() {
 
+        super.onResume();
         mLinearLayout.setVisibility(View.INVISIBLE);
         noCityHeadTextView.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
@@ -135,7 +136,6 @@ public class ContactUsFragment extends Fragment {
             }
         });
 
-        super.onResume();
     }
 
     @Override

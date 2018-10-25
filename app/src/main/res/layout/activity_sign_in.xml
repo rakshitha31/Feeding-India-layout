@@ -7,6 +7,7 @@
     tools:context=".activities.SignInActivity"
     android:layout_margin="@dimen/root_layout_margin"
     android:scrollbarStyle="outsideOverlay"
+
     android:fillViewport="true">
 
         <LinearLayout
@@ -152,17 +153,18 @@
                     android:text="@string/sign_up_as_hungerhero"
                     android:textColor="@color/white" />
 
-                <Button
-                    style="?attr/borderlessButtonStyle"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_five_dp"
-                    android:layout_marginRight="@dimen/margin_five_dp"
-                    android:layout_marginTop="@dimen/margin_ten_dp"
-                    android:background="@drawable/button_background"
-                    android:onClick="onClickAlreadyHungerHero"
-                    android:text="@string/already_a_hungerhero"
-                    android:textColor="@color/white" />
+            <Button
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="@dimen/margin_five_dp"
+                android:layout_marginRight="@dimen/margin_five_dp"
+                android:layout_marginTop="@dimen/margin_ten_dp"
+                android:background="@drawable/button_background"
+                android:onClick="onClickAlreadyHungerHero"
+                android:text="@string/already_a_hungerhero"
+                android:textColor="@color/white" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -171,27 +173,33 @@
 
                         <ImageButton
                             android:id="@+id/facebook_icon"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="60dp"
                             android:adjustViewBounds="true"
                             android:scaleType="centerInside"
+                            android:background="#fff"
                             android:src="@drawable/facebook_icon" />
 
                         <ImageButton
                             android:id="@+id/twitter_icon"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="60dp"
                             android:adjustViewBounds="true"
                             android:scaleType="centerInside"
+                            android:background="#fff"
                             android:src="@drawable/twitter" />
 
-                        <ImageButton
-                            android:id="@+id/instagram_icon"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:adjustViewBounds="true"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/instagram_icon" />
+                    <ImageButton
+                        android:id="@+id/instagram"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="#fff"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/instagram_icon" />
 
 
 

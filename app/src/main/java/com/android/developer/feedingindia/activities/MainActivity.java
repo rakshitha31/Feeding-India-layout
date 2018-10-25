@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private AlertDialog adminRequestDialog;
     private static final int MAKE_ADMIN_ID = 1, POST_NOTIFICATION_ID=2;
     private HashMap<String,Object> mMap;
-
-    private TextView navigationViewText;
     private long notificationCount = 0;
 
 
@@ -89,34 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView mNavHeaderUserName = mNavHeader.findViewById(R.id.nav_header_user_name);
         TextView mNavHeaderUserEmail = mNavHeader.findViewById(R.id.nav_header_user_email);
 
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mNotificationDbReference = mFirebaseDatabase.getReference().child("Notifications");
 
-        mNotificationDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getChildrenCount() == 0){
-                    Log.i("no_children","no_children");
-
-                }
-                else{
-                    long childCount = dataSnapshot.getChildrenCount();
-                    notificationCount = Long.valueOf(mSharedPreferences.getString("childCount", "0"));
-                    if(notificationCount < childCount){
-                        TextView textView = (TextView) mNavigationView.getMenu().findItem(R.id.nav_menu_item_notifications).getActionView();
-                        textView.setText(""+(childCount - notificationCount));
-                        mSharedPreferences.edit().putString("childCount",""+dataSnapshot.getChildrenCount()).apply();
-
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
 
         mHandler = new Handler();
@@ -195,10 +166,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
 
 
-            mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mNotificationDbReference = mFirebaseDatabase.getReference().child("Notifications");
 
+        mNotificationDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getChildrenCount() == 0){
+
+                }
+                else{
+                    long childCount = dataSnapshot.getChildrenCount();
+                    notificationCount = Long.valueOf(mSharedPreferences.getString("childCount", "0"));
+                    if(notificationCount < childCount){
+                        TextView textView = (TextView) mNavigationView.getMenu().findItem(R.id.nav_menu_item_notifications).getActionView();
+                        textView.setText(""+(childCount - notificationCount));
+                        mSharedPreferences.edit().putString("childCount",""+dataSnapshot.getChildrenCount()).apply();
+
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                makeToast("dataBaseError");
+            }
+        });
+
+
+
+
+
+
+        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try{
                     mMap = (HashMap) dataSnapshot.getValue();
 
                     mSharedPreferences.edit().putString("userType",mMap.get("userType").toString()).apply();
@@ -206,21 +210,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     if (mMap.get("requestedToBeAdmin").equals(true))
                         adminRequestDialog.show();
 
+                }catch (NullPointerException e){
+                    Log.d("Null Pointer Exception","mMap NPE");
                 }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    makeToast(databaseError.getMessage());
 
-                }
-            });
 
-            String userType = mSharedPreferences.getString("userType", "");
-            if((userType.equals("admin")||userType.equals("superadmin"))&&!addedAdminMenuItems){
-                addAdminMenuItems(userType);
-                addedAdminMenuItems = true;
+
             }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                makeToast(databaseError.getMessage());
+
+            }
+        });
+
+        String userType = mSharedPreferences.getString("userType", "");
+        if((userType.equals("admin")||userType.equals("superadmin"))&&!addedAdminMenuItems){
+            addAdminMenuItems(userType);
+            addedAdminMenuItems = true;
+        }
 
 
     }
@@ -230,7 +242,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Menu menu = mNavigationView.getMenu();
         menu.removeItem(R.id.nav_menu_contact_us);
         if(userType.equals("superadmin"))
-        menu.add(0, MAKE_ADMIN_ID, 700, TAG_MAKE_ADMIN);
+            menu.add(0, MAKE_ADMIN_ID, 700, TAG_MAKE_ADMIN);
         menu.add(0,POST_NOTIFICATION_ID,800,TAG_POST_NOTIFICATION);
 
     }

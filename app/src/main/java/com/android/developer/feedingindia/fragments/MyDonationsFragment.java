@@ -1,6 +1,7 @@
 package com.android.developer.feedingindia.fragments;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.android.developer.feedingindia.R;
+import com.android.developer.feedingindia.activities.EnlargeImageViewActivity;
 import com.android.developer.feedingindia.adapters.DonationAdapter;
 import com.android.developer.feedingindia.pojos.DonationDetails;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,7 +40,6 @@ public class MyDonationsFragment extends Fragment {
     private ArrayList<DonationDetails> userDonationList;
     private RecyclerView mRecyclerView;
     private DonationAdapter mAdapter;
-    private ArrayList<String> donationIdList;
     private android.support.v7.app.AlertDialog mAlertDialog;
     private android.support.v7.app.AlertDialog.Builder mBuilder;
 
@@ -51,22 +53,23 @@ public class MyDonationsFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
         userDonationList = new ArrayList<>();
-        donationIdList = new ArrayList<>();
         userDonationCount = readCount = 0;
         donationDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Donations").
-                        child(FirebaseAuth.getInstance().getUid());
+                child(FirebaseAuth.getInstance().getUid());
 
         mChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 DonationDetails donationDetails = dataSnapshot.getValue(DonationDetails.class);
-                donationDetails.setDonationUserId(dataSnapshot.getKey());
-                userDonationList.add(donationDetails);
-               // donationIdList.add(dataSnapshot.getKey());
-
-                readCount++;
-
+                if(!donationDetails.getStatus().equals("cancelled")) {
+                    donationDetails.setDonationUserId(dataSnapshot.getKey());
+                    userDonationList.add(donationDetails);
+                    readCount++;
+                }
+                if(donationDetails.getStatus().equals("cancelled")){
+                    userDonationCount--;
+                }
                 if(readCount == userDonationCount) {
                     sortList();
                     enableUserInteraction();
@@ -107,7 +110,6 @@ public class MyDonationsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_donations, container, false);
         progressBar = view.findViewById(R.id.progressBar);
         mRecyclerView = view.findViewById(R.id.donations_container);
@@ -130,7 +132,6 @@ public class MyDonationsFragment extends Fragment {
 
                     userDonationCount = readCount = 0;
                     userDonationList = new ArrayList<>();
-                    donationIdList = new ArrayList<>();
 
                     userDonationCount = dataSnapshot.getChildrenCount();
 
@@ -202,10 +203,11 @@ public class MyDonationsFragment extends Fragment {
                             setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-
-                                    donationDatabaseReference.child(userDonationList.get(position).getDonationId()).removeValue();
+                                    FirebaseDatabase.getInstance().getReference().child("Donations")
+                                            .child(FirebaseAuth.getInstance().getUid())
+                                            .child(userDonationList.get(position).getDonationUserId())
+                                            .child("status").setValue("cancelled");
                                     userDonationList.remove(position);
-                                    donationIdList.remove(position);
                                     mAdapter.notifyItemRemoved(position);
 
                                 }
@@ -218,8 +220,13 @@ public class MyDonationsFragment extends Fragment {
 
             @Override
             public void onClickImage(ImageView view, int position) {
-
-                //Intent to Enlarged ImageView Activity
+                String passingImageUrl = userDonationList.get(position).getDonationImageUrl();
+                if(passingImageUrl != null){
+                    Intent intent = new Intent(getContext(),EnlargeImageViewActivity.class);
+                    intent.putExtra("ImageUrl", passingImageUrl);
+                    intent.putExtra("type","Donation");
+                    startActivity(intent);
+                }
 
             }
         });
